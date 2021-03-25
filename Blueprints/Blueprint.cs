@@ -559,7 +559,11 @@ namespace Blueprints {
         }
 
         public bool CanAffordToPlace(out Dictionary<Tag, float> remaining) {
-            Dictionary<Tag, float> accessibleResources = WorldInventory.Instance.GetAccessibleAmounts();
+            //Dictionary<Tag, float> accessibleResources = WorldInventory.Instance.GetAccessibleAmounts();
+
+            WorldInventory Instance = new WorldInventory();
+            Dictionary<Tag, float> accessibleResources = Instance.GetAccessibleAmounts();
+
             remaining = BlueprintCost;
 
             foreach (KeyValuePair<Tag, float> accessibleResource in accessibleResources) {
