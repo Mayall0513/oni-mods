@@ -156,10 +156,10 @@ namespace Blueprints {
 
         [HarmonyPatch(typeof(ToolMenu), "OnPrefabInit")]
         public static class ToolMenu_OnPrefabInit {
-            public static void Postfix(List<Sprite> ___icons) {
-                ___icons.Add(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE);
-                ___icons.Add(BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE);
-                ___icons.Add(BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE);
+            public static void Postfix() {
+                Assets.Sprites.Add(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE.name, BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE);
+                Assets.Sprites.Add(BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE.name, BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE);
+                Assets.Sprites.Add(BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE.name, BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE);
 
                 MultiToolParameterMenu.CreateInstance();
                 ToolParameterMenu.ToggleState defaultSelection = BlueprintsAssets.Options.DefaultMenuSelections == DefaultSelections.All ? ToolParameterMenu.ToggleState.On : ToolParameterMenu.ToggleState.Off;

@@ -49,8 +49,8 @@
     <Reference Include="PLib, Version=3.13.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PLib.3.13.1\lib\net40\PLib.dll</HintPath>
     </Reference>
-    <Reference Include="Splat, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Splat.10.0.1\lib\net461\Splat.dll</HintPath>
+    <Reference Include="Splat, Version=11.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Splat.11.0.1\lib\net461\Splat.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
