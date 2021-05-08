@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DisplayVersion</RootNamespace>
     <AssemblyName>DisplayVersion</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -52,24 +52,11 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
-    <Reference Include="Harmony, Version=0.3.6024.24509, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Harmony.0.3.0\lib\portable-net45+win+wpa81\Harmony.dll</HintPath>
-    </Reference>
     <Reference Include="PLib, Version=3.13.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PLib.3.13.1\lib\net40\PLib.dll</HintPath>
     </Reference>
-    <Reference Include="Splat, Version=11.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Splat.11.0.1\lib\net461\Splat.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UnityEngine.1.0.0\lib\UnityEngine.dll</HintPath>
-      <Aliases>global1</Aliases>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll</HintPath>

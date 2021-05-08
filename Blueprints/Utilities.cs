@@ -1,6 +1,8 @@
 ﻿using Harmony;
+using PeterHan.PLib;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -118,10 +120,15 @@ namespace Blueprints {
             }
 
             if (buildingDef.ShowInBuildMenu && !buildingDef.Deprecated) {
-                foreach (PlanScreen.PlanInfo planScreen in TUNING.BUILDINGS.PLANORDER) {
-                    foreach (string buildingID in planScreen.data as IList<string>) {
-                        if (buildingID == buildingDef.PrefabID) {
-                            return true;
+                foreach (PlanScreen.PlanInfo planScreen in TUNING.BUILDINGS.PLANORDER)
+                {
+                    if (!(planScreen.data is null)) {
+                        foreach (string buildingID in planScreen.data as IList<string>)
+                        {
+                            if (buildingID == buildingDef.PrefabID)
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
