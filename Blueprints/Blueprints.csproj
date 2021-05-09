@@ -27,6 +27,9 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>8.0</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
+	<TransformOnBuild>true</TransformOnBuild>
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>8.0</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
+	<TransformOnBuild>true</TransformOnBuild>
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
@@ -128,6 +134,11 @@
     <Compile Include="UseBlueprintTool.cs" />
     <Compile Include="UseBlueprintToolHoverCard.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="VersionAutoIncrementer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VersionAutoIncrementer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Visuals.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,11 +168,20 @@
     <EmbeddedResource Include="image_snapshot_button.dds" />
     <EmbeddedResource Include="image_useblueprint_button.dds" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="VersionAutoIncrementer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VersionAutoIncrementer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)packages\ILMerge.3.0.41\tools\net452\ILMerge.exe" /out:Blueprints.dll UnmergedBlueprints.dll DisplayVersion.dll ModLocalization.dll PLib.dll UnmergedMultiFiltration.dll /targetplatform:v4
-xcopy /y  "$(TargetDir)Blueprints.dll" "%25USERPROFILE%25\Documents\Klei\OxygenNotIncluded\mods\Local\Blueprints LOCAL\"
+xcopy /y  "$(TargetDir)Blueprints.dll" "%25USERPROFILE%25\Documents\Klei\OxygenNotIncluded\mods\dev\Blueprints DEV\"
 
 </PostBuildEvent>
   </PropertyGroup>

@@ -1,6 +1,7 @@
 ﻿using Harmony;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PeterHan.PLib;
 using System;
 using System.IO;
 using System.Reflection;
@@ -36,6 +37,7 @@ namespace ModFramework {
 
             string[] languageFiles = Directory.GetFiles(LocalizationFolder, "*" + languageCode + "*", SearchOption.TopDirectoryOnly);
             if (languageFiles.Length == 0) {
+                PUtil.LogDebug("can`t find localization files");
                 return false;
             }
 
@@ -104,7 +106,6 @@ namespace ModFramework {
         public static class Localization_Initialize {
             public static void Postfix(Localization.Locale ___sLocale) {
                 TryWriteTemplate();
-
                 if (___sLocale == null || !(LoadLocalization(___sLocale.Code) || LoadLocalization(___sLocale.Code + ".json"))) {
                     if (DefaultLocalization != null) {
                         for (int i = 0; i < DefaultLocalization.Length - 1; i += 2) {
