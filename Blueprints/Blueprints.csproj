@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Blueprints</RootNamespace>
-    <AssemblyName>UnmergedBlueprints</AssemblyName>
+    <AssemblyName>Blueprints</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -27,7 +26,7 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>8.0</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
-	<TransformOnBuild>true</TransformOnBuild>
+    <TransformOnBuild>true</TransformOnBuild>
     <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
   </PropertyGroup>
@@ -40,47 +39,13 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>8.0</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
-	<TransformOnBuild>true</TransformOnBuild>
+    <TransformOnBuild>true</TransformOnBuild>
     <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PLib, Version=3.13.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PLib.3.13.1\lib\net40\PLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Blueprint.cs" />
     <Compile Include="BlueprintsOptions.cs" />
@@ -102,21 +67,15 @@
     <Compile Include="Visuals.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="languages\ja.locale" />
+    <None Include="languages\locale.template" />
+    <None Include="languages\ru.locale" />
+    <None Include="mod_info.yaml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lib\DisplayVersion\DisplayVersion.csproj">
-      <Project>{e0edc434-6d56-40a8-a603-83f0e9d7c60c}</Project>
-      <Name>DisplayVersion</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lib\ModLocalization\ModLocalization.csproj">
-      <Project>{9f4b0a89-b215-4e2d-9680-6576acbdce5c}</Project>
-      <Name>ModLocalization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lib\ModMultiFiltration\MultiFiltration.csproj">
-      <Project>{6d6dd776-b4b9-4362-be45-2c47d4ab4178}</Project>
-      <Name>MultiFiltration</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Lib\DisplayVersion\DisplayVersion.csproj" Private="true" />
+    <ProjectReference Include="..\Lib\ModLocalization\ModLocalization.csproj" Private="true" />
+    <ProjectReference Include="..\Lib\ModMultiFiltration\MultiFiltration.csproj" Private="true" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="image_createblueprint_visualizer.dds" />
@@ -137,18 +96,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)packages\ILMerge.3.0.41\tools\net452\ILMerge.exe" /out:Blueprints.dll UnmergedBlueprints.dll DisplayVersion.dll ModLocalization.dll PLib.dll UnmergedMultiFiltration.dll /targetplatform:v4
-xcopy /y  "$(TargetDir)Blueprints.dll" "%25USERPROFILE%25\Documents\Klei\OxygenNotIncluded\mods\dev\Blueprints DEV\"
-
-</PostBuildEvent>
-  </PropertyGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.41\build\ILMerge.props'))" />
-  </Target>
 </Project>

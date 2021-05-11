@@ -255,15 +255,15 @@ namespace Blueprints {
 
         public void Clean() {
             if (DirtyCell != -1 && Grid.IsValidBuildingCell(DirtyCell)) {
-                //PUtil.LogDebug(DirtyCell);
+                //PUtil.LogDebug("1 " + DirtyCell);
                 if (Grid.Objects[DirtyCell, (int) buildingConfig.BuildingDef.TileLayer] == Visualizer) {
                     Grid.Objects[DirtyCell, (int) buildingConfig.BuildingDef.TileLayer] = null;
                 }
-                //PUtil.LogDebug(DirtyCell);
+                //PUtil.LogDebug("2 " + DirtyCell);
                 if (hasReplacementLayer && Grid.Objects[DirtyCell, (int) buildingConfig.BuildingDef.ReplacementLayer] == Visualizer) {
                     Grid.Objects[DirtyCell, (int) buildingConfig.BuildingDef.ReplacementLayer] = null;
                 }
-                //PUtil.LogDebug(DirtyCell);
+                //PUtil.LogDebug("3 " + DirtyCell);
                 if (buildingConfig.BuildingDef.isKAnimTile) {
                     GameObject tileLayerObject = Grid.Objects[DirtyCell, (int)buildingConfig.BuildingDef.TileLayer];
                     if (tileLayerObject == null || tileLayerObject.GetComponent<Constructable>() == null) {
@@ -275,7 +275,7 @@ namespace Blueprints {
                         World.Instance.blockTileRenderer.RemoveBlock(buildingConfig.BuildingDef, true, SimHashes.Void, DirtyCell);
                     }
                 }
-                //PUtil.LogDebug(DirtyCell);
+                //PUtil.LogDebug("4 " + DirtyCell);
                 TileVisualizer.RefreshCell(DirtyCell, buildingConfig.BuildingDef.TileLayer, buildingConfig.BuildingDef.ReplacementLayer);
             }
 

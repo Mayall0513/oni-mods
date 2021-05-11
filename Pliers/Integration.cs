@@ -71,8 +71,9 @@ namespace Pliers {
 
         [HarmonyPatch(typeof(ToolMenu), "OnPrefabInit")]
         public static class ToolMenu_OnPrefabInit {
-            public static void Postfix() {
-                Assets.Sprites.Add(PliersAssets.PLIERS_ICON_SPRITE.name, PliersAssets.PLIERS_ICON_SPRITE);
+            public static void Postfix(ToolMenu __instance, List<Sprite> ___icons)
+            {
+                ___icons.Add(PliersAssets.PLIERS_ICON_SPRITE);
             }
         }
 
