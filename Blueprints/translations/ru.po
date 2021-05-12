@@ -84,15 +84,15 @@ msgstr "НАЗАД"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_CYCLEFOLDERS"
 msgid "Use {0} and {1} to cycle folders."
-msgstr "Используй {0} и {1} для выбора папки."
+msgstr "Используйте {0} и {1} для выбора папки."
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_CYCLEBLUEPRINTS"
 msgid "Use {0} and {1} to cycle blueprints."
-msgstr "Используй {0} и {1} для выбора чертежа."
+msgstr "Используйте {0} и {1} для выбора чертежа."
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT"
 msgid "Press {0} to assign folder."
-msgstr "Нажми {0} для задания папки с чертежами."
+msgstr "Нажмите {0} для задания папки с чертежами."
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA"
 msgid "Same folder provided - no change made."
@@ -112,7 +112,7 @@ msgstr "Нажмите {0} чтобы удалить чертеж."
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_ERRORMESSAGE"
 msgid "This blueprint contained {0} misconfigured or missing prefabs which have been omitted!"
-msgstr "Этот чертеж содержал {0} ненастроенных или отсутствующих элементов, которые были пропущены!"
+msgstr "Этот чертеж содержит {0} некорретных или отсутствующих элементов, которые были игнорированы!"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_SELECTEDBLUEPRINT"
 msgid "Selected \"{0}\" ({1}/{2}) from \"{3}\" ({4}/{5})"
@@ -131,7 +131,8 @@ msgid "Take Snapshot"
 msgstr "Сделайте снимок"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP"
-msgid "Сделайте снимок {0} \n\nСоздайте чертеж и сразу же разместите его, не помещая в коллекцию чертежей! \nСнимок нигде не сохраняется."
+msgid "Take snapshot {0} \n\nCreate a blueprint and quickly place it elsewhere while not cluttering your blueprint collection! \nSnapshots do not persist between games or worlds."
+msgstr "Сделайте снимок {0} \n\nСоздайте чертеж и сразу же разместите его, не помещая в коллекцию чертежей! \nСнимок нигде не сохраняется."
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_EMPTY"
 msgid "Snapshot would have been empty!"
@@ -169,7 +170,7 @@ msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_FOLDERBLUEPRINT_TITLE"
 msgid "ASSIGN FOLDER"
 msgstr "СОЗДАЙТЕ ПАПКУ"
 
-msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.BLUEPRINTS_GASTILES"
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES"
 msgid "Gas Tiles"
 msgstr "Клетки с газом"
 

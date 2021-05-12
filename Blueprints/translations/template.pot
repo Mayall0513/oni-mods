@@ -167,7 +167,7 @@ msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_FOLDERBLUEPRINT_TITLE"
 msgid "ASSIGN FOLDER"
 msgstr ""
 
-msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.BLUEPRINTS_GASTILES"
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES"
 msgid "Gas Tiles"
 msgstr ""
 
