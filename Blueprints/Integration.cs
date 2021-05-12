@@ -14,6 +14,9 @@ namespace Blueprints {
         public static void OnLoad() {
             PUtil.InitLibrary(false);
             PLocalization.Register();
+            //Localization.RegisterForTranslation(typeof(BlueprintsStrings));
+            //ModUtil.RegisterForTranslation(typeof(BulkChangeStrings));
+
             POptions.RegisterOptions(typeof(BlueprintsOptions));
 
             BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.image_createblueprint_button.dds"), 32, 32);
@@ -93,25 +96,25 @@ namespace Blueprints {
                     BlueprintsAssets.BLUEPRINTS_CREATE_ICON_NAME,
                     BlueprintsAssets.BLUEPRINTS_CREATE_OPENTOOL.GetKAction(),
                     BlueprintsAssets.BLUEPRINTS_CREATE_TOOLNAME,
-                    string.Format(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_TOOLTIP), "{Hotkey}"),
+                    string.Format(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_TOOLTIP, "{Hotkey}"),
                     true
                 );
 
                 BlueprintsAssets.BLUEPRINTS_USE_TOOLCOLLECTION = ToolMenu.CreateToolCollection(
-                    (string)Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_USE_NAME),
+                    BlueprintsStrings.STRING_BLUEPRINTS_USE_NAME,
                     BlueprintsAssets.BLUEPRINTS_USE_ICON_NAME,
                     BlueprintsAssets.BLUEPRINTS_USE_OPENTOOL.GetKAction(),
                     BlueprintsAssets.BLUEPRINTS_USE_TOOLNAME,
-                    string.Format(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP), "{Hotkey}"),
+                    string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP, "{Hotkey}"),
                     true
                 );
 
                 BlueprintsAssets.BLUEPRINTS_SNAPSHOT_TOOLCOLLECTION = ToolMenu.CreateToolCollection(
-                    (string)Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_NAME),
+                    BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_NAME,
                     BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_NAME,
                     BlueprintsAssets.BLUEPRINTS_SNAPSHOT_OPENTOOL.GetKAction(),
                     BlueprintsAssets.BLUEPRINTS_SNAPSHOT_TOOLNAME,
-                    string.Format(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP), "{Hotkey}"),
+                    string.Format(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP, "{Hotkey}"),
                     false
                 );
 

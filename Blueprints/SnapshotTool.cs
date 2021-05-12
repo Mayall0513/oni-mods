@@ -120,7 +120,7 @@ namespace Blueprints {
 
                 Blueprint blueprint = BlueprintsState.CreateBlueprint(new Vector2I(x0, y0), new Vector2I(x1, y1), MultiToolParameterMenu.Instance);
                 if (blueprint.IsEmpty()) {
-                    PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_EMPTY), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
+                    PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_EMPTY, null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
                 }
 
                 else {
@@ -132,7 +132,7 @@ namespace Blueprints {
                     gameObject.GetComponent<SnapshotToolHoverCard>().UsingSnapshot = true;
                     DestroyVisualizer();
 
-                    PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TAKEN), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
+                    PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TAKEN, null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
                     GridCompositor.Instance.ToggleMajor(true);
                     this.blueprint = blueprint;
                 }

@@ -57,47 +57,47 @@ namespace Blueprints {
         public static LocString STRING_BLUEPRINTS_CREATE_TOOLTIP = "Create blueprint {0}";
         public static LocString STRING_BLUEPRINTS_CREATE_EMPTY = "Blueprint would have been empty!";
         public static LocString STRING_BLUEPRINTS_CREATE_CREATED = "Created blueprint!";
-        public const string STRING_BLUEPRINTS_CREATE_CANCELLED = "Cancelled blueprint!";
-        public const string STRING_BLUEPRINTS_CREATE_TOOLTIP_TITLE = "CREATE BLUEPRINT TOOL";
-        public const string STRING_BLUEPRINTS_CREATE_ACTION_DRAG = "DRAG";
-        public const string STRING_BLUEPRINTS_CREATE_ACTION_BACK = "BACK";
+        public static LocString STRING_BLUEPRINTS_CREATE_CANCELLED = "Cancelled blueprint!";
+        public static LocString STRING_BLUEPRINTS_CREATE_TOOLTIP_TITLE = "CREATE BLUEPRINT TOOL";
+        public static LocString STRING_BLUEPRINTS_CREATE_ACTION_DRAG = "DRAG";
+        public static LocString STRING_BLUEPRINTS_CREATE_ACTION_BACK = "BACK";
 
-        public const string STRING_BLUEPRINTS_USE_NAME = "Use Blueprint";
-        public const string STRING_BLUEPRINTS_USE_TOOLTIP = "Use blueprint {0}";
-        public const string STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS = "Loaded {0} blueprints! ({1} total)";
-        public const string STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS_ADDITIONAL = "additional";
-        public const string STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS_FEWER = "fewer";
-        public const string STRING_BLUEPRINTS_USE_TOOLTIP_TITLE = "USE BLUEPRINT TOOL";
-        public const string STRING_BLUEPRINTS_USE_ACTION_CLICK = "CLICK";
-        public const string STRING_BLUEPRINTS_USE_ACTION_BACK = "BACK";
-        public const string STRING_BLUEPRINTS_USE_CYCLEFOLDERS = "Use {0} and {1} to cycle folders.";
-        public const string STRING_BLUEPRINTS_USE_CYCLEBLUEPRINTS = "Use {0} and {1} to cycle blueprints.";
-        public const string STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT = "Press {0} to assign folder.";
-        public const string STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA = "Same folder provided - no change made.";
-        public const string STRING_BLUEPRINTS_USE_MOVEDBLUEPRINT = "Moved \"{0}\" to \"{1}\"";
-        public const string STRING_BLUEPRINTS_USE_NAMEBLUEPRINT = "Press {0} to rename blueprint.";
-        public const string STRING_BLUEPRINTS_USE_DELETEBLUEPRINT = "Press {0} to delete blueprint.";
-        public const string STRING_BLUEPRINTS_USE_ERRORMESSAGE = "This blueprint contained {0} misconfigured or missing prefabs which have been omitted!";
-        public const string STRING_BLUEPRINTS_USE_SELECTEDBLUEPRINT = "Selected \"{0}\" ({1}/{2}) from \"{3}\" ({4}/{5})";
-        public const string STRING_BLUEPRINTS_USE_FOLDEREMPTY = "Selected folder \"{0}\" is empty!";
-        public const string STRING_BLUEPRINTS_USE_NOBLUEPRINTS = "No blueprints loaded!";
+        public static LocString STRING_BLUEPRINTS_USE_NAME = "Use Blueprint";
+        public static LocString STRING_BLUEPRINTS_USE_TOOLTIP = "Use blueprint {0}";
+        public static LocString STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS = "Loaded {0} blueprints! ({1} total)";
+        public static LocString STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS_ADDITIONAL = "additional";
+        public static LocString STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS_FEWER = "fewer";
+        public static LocString STRING_BLUEPRINTS_USE_TOOLTIP_TITLE = "USE BLUEPRINT TOOL";
+        public static LocString STRING_BLUEPRINTS_USE_ACTION_CLICK = "CLICK";
+        public static LocString STRING_BLUEPRINTS_USE_ACTION_BACK = "BACK";
+        public static LocString STRING_BLUEPRINTS_USE_CYCLEFOLDERS = "Use {0} and {1} to cycle folders.";
+        public static LocString STRING_BLUEPRINTS_USE_CYCLEBLUEPRINTS = "Use {0} and {1} to cycle blueprints.";
+        public static LocString STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT = "Press {0} to assign folder.";
+        public static LocString STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA = "Same folder provided - no change made.";
+        public static LocString STRING_BLUEPRINTS_USE_MOVEDBLUEPRINT = "Moved \"{0}\" to \"{1}\"";
+        public static LocString STRING_BLUEPRINTS_USE_NAMEBLUEPRINT = "Press {0} to rename blueprint.";
+        public static LocString STRING_BLUEPRINTS_USE_DELETEBLUEPRINT = "Press {0} to delete blueprint.";
+        public static LocString STRING_BLUEPRINTS_USE_ERRORMESSAGE = "This blueprint contained {0} misconfigured or missing prefabs which have been omitted!";
+        public static LocString STRING_BLUEPRINTS_USE_SELECTEDBLUEPRINT = "Selected \"{0}\" ({1}/{2}) from \"{3}\" ({4}/{5})";
+        public static LocString STRING_BLUEPRINTS_USE_FOLDEREMPTY = "Selected folder \"{0}\" is empty!";
+        public static LocString STRING_BLUEPRINTS_USE_NOBLUEPRINTS = "No blueprints loaded!";
 
-        public const string STRING_BLUEPRINTS_SNAPSHOT_NAME = "Take Snapshot";
-        public const string STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP = "Take snapshot {0} \n\nCreate a blueprint and quickly place it elsewhere while not cluttering your blueprint collection! \nSnapshots do not persist between games or worlds.";
-        public const string STRING_BLUEPRINTS_SNAPSHOT_EMPTY = "Snapshot would have been empty!";
-        public const string STRING_BLUEPRINTS_SNAPSHOT_TAKEN = "Snapshot taken!";
-        public const string STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP_TITLE = "SNAPSHOT TOOL";
-        public const string STRING_BLUEPRINTS_SNAPSHOT_ACTION_CLICK = "CLICK";
-        public const string STRING_BLUEPRINTS_SNAPSHOT_ACTION_DRAG = "DRAG";
-        public const string STRING_BLUEPRINTS_SNAPSHOT_ACTION_BACK = "BACK";
-        public const string STRING_BLUEPRINTS_SNAPSHOT_NEWSNAPSHOT = "Press {0} to take new snapshot.";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_NAME = "Take Snapshot";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP = "Take snapshot {0} \n\nCreate a blueprint and quickly place it elsewhere while not cluttering your blueprint collection! \nSnapshots do not persist between games or worlds.";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_EMPTY = "Snapshot would have been empty!";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_TAKEN = "Snapshot taken!";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP_TITLE = "SNAPSHOT TOOL";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_ACTION_CLICK = "CLICK";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_ACTION_DRAG = "DRAG";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_ACTION_BACK = "BACK";
+        public static LocString STRING_BLUEPRINTS_SNAPSHOT_NEWSNAPSHOT = "Press {0} to take new snapshot.";
 
-        public const string STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE = "NAME BLUEPRINT";
-        public const string STRING_BLUEPRINTS_FOLDERBLUEPRINT_TITLE = "ASSIGN FOLDER";
+        public static LocString STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE = "NAME BLUEPRINT";
+        public static LocString STRING_BLUEPRINTS_FOLDERBLUEPRINT_TITLE = "ASSIGN FOLDER";
 
-        public const string STRING_BLUEPRINTS_MULTIFILTER_GASTILES = "Gas Tiles";
-        public const string STRING_BLUEPRINTS_MULTIFILTER_ALL = "All";
-        public const string STRING_BLUEPRINTS_MULTIFILTER_NONE = "None";
+        public static LocString STRING_BLUEPRINTS_MULTIFILTER_GASTILES = "Gas Tiles";
+        public static LocString STRING_BLUEPRINTS_MULTIFILTER_ALL = "All";
+        public static LocString STRING_BLUEPRINTS_MULTIFILTER_NONE = "None";
     }
 
     public static class BlueprintsAssets {
