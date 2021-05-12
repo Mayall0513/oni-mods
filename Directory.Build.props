@@ -27,10 +27,6 @@
 	<Reference Include="System" />
   </ItemGroup>
   <PropertyGroup>
-    <Product>OXYDjeff</Product>
-    <Authors>pr_djefferson (https://github.com/Pt-Djefferson)</Authors>
-    <PackageProjectUrl>https://github.com/Pt-Djefferson/OXYDjeff</PackageProjectUrl>
-    <Copyright>Copyright pt_djefferson 2021</Copyright>
 	<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
