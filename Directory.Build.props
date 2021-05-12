@@ -24,15 +24,11 @@
     <Reference Include="UnityEngine.UI" HintPath="$(GameFolder)/UnityEngine.UI.dll" />
     <Reference Include="UnityEngine.UIModule" HintPath="$(GameFolder)/UnityEngine.UIModule.dll" />
     <Reference Include="Newtonsoft.Json" HintPath="$(GameFolder)/Newtonsoft.Json.dll" />
-	<Reference Include="System" />
+	<!-- <Reference Include="System" /> -->
   </ItemGroup>
   <PropertyGroup>
-    <Product>OXYDjeff</Product>
-    <Authors>pr_djefferson (https://github.com/Pt-Djefferson)</Authors>
-    <PackageProjectUrl>https://github.com/Pt-Djefferson/OXYDjeff</PackageProjectUrl>
-    <Copyright>Copyright pt_djefferson 2021</Copyright>
-	<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(UsesPLib)' != 'false'  And '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <Reference Include="PLib" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Release/net40/Plib.dll" />
