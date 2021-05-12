@@ -100,14 +100,14 @@ namespace Blueprints {
                         string newFolder = blueprintFolder.Trim(' ', '/', '\\', Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
                         if (newFolder == BlueprintsState.SelectedBlueprint.Folder) {
-                            PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime, false, false);
+                            PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA, null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime, false, false);
                         }
 
                         else {
                             string blueprintName = BlueprintsState.SelectedBlueprint.FriendlyName;
                             
                             BlueprintsState.SelectedBlueprint.SetFolder(newFolder);
-                            PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, string.Format(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_USE_MOVEDBLUEPRINT), blueprintName, newFolder), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime, false, false);
+                            PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_MOVEDBLUEPRINT, blueprintName, newFolder), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime, false, false);
                         }
                         
                         SpeedControlScreen.Instance.Unpause(false);
@@ -127,7 +127,7 @@ namespace Blueprints {
                         parent.Deactivate();
                     }
 
-                    FileNameDialog blueprintNameDialog = UIUtilities.CreateTextDialog(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE), false, onConfirmDelegate);
+                    FileNameDialog blueprintNameDialog = UIUtilities.CreateTextDialog(BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE, false, onConfirmDelegate);
                     SpeedControlScreen.Instance.Pause(false);
                     blueprintNameDialog.Activate();
                 }
