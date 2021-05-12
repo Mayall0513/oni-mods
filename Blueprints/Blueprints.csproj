@@ -67,14 +67,13 @@
     <Compile Include="Visuals.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="languages\ja.locale" />
-    <None Include="languages\locale.template" />
-    <None Include="languages\ru.locale" />
     <None Include="mod_info.yaml" />
+    <None Include="translations\ja.po" />
+    <None Include="translations\ru.po" />
+    <None Include="translations\template.pot" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lib\DisplayVersion\DisplayVersion.csproj" Private="true" />
-    <ProjectReference Include="..\Lib\ModLocalization\ModLocalization.csproj" Private="true" />
     <ProjectReference Include="..\Lib\ModMultiFiltration\MultiFiltration.csproj" Private="true" />
   </ItemGroup>
   <ItemGroup>
