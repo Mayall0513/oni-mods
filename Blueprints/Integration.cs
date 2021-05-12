@@ -1,6 +1,7 @@
 ﻿using Harmony;
 using ModFramework;
 using PeterHan.PLib;
+using PeterHan.PLib.Datafiles;
 using PeterHan.PLib.Options;
 using Rendering;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Blueprints {
     public static class Integration {
         public static void OnLoad() {
             PUtil.InitLibrary(false);
+            PLocalization.Register();
             POptions.RegisterOptions(typeof(BlueprintsOptions));
 
             BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.image_createblueprint_button.dds"), 32, 32);
@@ -37,8 +39,8 @@ namespace Blueprints {
 
             BlueprintsAssets.BLUEPRINTS_MULTI_DELETE = PAction.Register("Blueprints.multi.delete", "Delete Blueprint/Snapshot", new PKeyBinding(KKeyCode.Delete, Modifier.None));
 
-            ModLocalization.LocalizationCompleteEvent += ModLocalizedHandler;
-            ModLocalization.DefaultLocalization = new string[] {
+            //ModLocalization.LocalizationCompleteEvent += ModLocalizedHandler;
+            /*ModLocalization.DefaultLocalization = new string[] {
                 BlueprintsStrings.STRING_BLUEPRINTS_CREATE_NAME, "New Blueprint",
                 BlueprintsStrings.STRING_BLUEPRINTS_CREATE_TOOLTIP, "Create blueprint {0}",
                 BlueprintsStrings.STRING_BLUEPRINTS_CREATE_EMPTY, "Blueprint would have been empty!",
@@ -83,13 +85,41 @@ namespace Blueprints {
                 "STRINGS.UI.TOOLS.FILTERLAYERS." + BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES, "Gas Tiles",
                 BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_ALL, "All",
                 BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_NONE, "None"
-            };
+            };*/
+
+                BlueprintsAssets.BLUEPRINTS_CREATE_TOOLCOLLECTION = ToolMenu.CreateToolCollection(
+                    //(string)Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_NAME),
+                    BlueprintsStrings.STRING_BLUEPRINTS_CREATE_NAME,
+                    BlueprintsAssets.BLUEPRINTS_CREATE_ICON_NAME,
+                    BlueprintsAssets.BLUEPRINTS_CREATE_OPENTOOL.GetKAction(),
+                    BlueprintsAssets.BLUEPRINTS_CREATE_TOOLNAME,
+                    string.Format(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_TOOLTIP), "{Hotkey}"),
+                    true
+                );
+
+                BlueprintsAssets.BLUEPRINTS_USE_TOOLCOLLECTION = ToolMenu.CreateToolCollection(
+                    (string)Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_USE_NAME),
+                    BlueprintsAssets.BLUEPRINTS_USE_ICON_NAME,
+                    BlueprintsAssets.BLUEPRINTS_USE_OPENTOOL.GetKAction(),
+                    BlueprintsAssets.BLUEPRINTS_USE_TOOLNAME,
+                    string.Format(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP), "{Hotkey}"),
+                    true
+                );
+
+                BlueprintsAssets.BLUEPRINTS_SNAPSHOT_TOOLCOLLECTION = ToolMenu.CreateToolCollection(
+                    (string)Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_NAME),
+                    BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_NAME,
+                    BlueprintsAssets.BLUEPRINTS_SNAPSHOT_OPENTOOL.GetKAction(),
+                    BlueprintsAssets.BLUEPRINTS_SNAPSHOT_TOOLNAME,
+                    string.Format(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP), "{Hotkey}"),
+                    false
+                );
 
             Utilities.AttachFileWatcher();
             Debug.Log("Blueprints Loaded: Version " + Assembly.GetExecutingAssembly().GetName().Version);
         }
 
-        private static void ModLocalizedHandler(string languageCode) {
+/*        private static void ModLocalizedHandler(string languageCode) {
             BlueprintsAssets.BLUEPRINTS_CREATE_TOOLCOLLECTION = ToolMenu.CreateToolCollection(
                 (string) Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_NAME),
                 BlueprintsAssets.BLUEPRINTS_CREATE_ICON_NAME,
@@ -117,9 +147,21 @@ namespace Blueprints {
                 false
            );
         }
-    }
+*/    }
 
     namespace Patches {
+/*        [HarmonyPatch(typeof(Db), "Initialize")]
+        public static class Db_Initialize_Patch
+        {
+            /// <summary>
+            /// Applied before Initialize runs.
+            /// </summary>
+            internal static void Prefix()
+            {
+                ModUtil.RegisterForTranslation(typeof(BlueprintsStrings));
+            }
+        }
+*/
         [HarmonyPatch(typeof(PlayerController), "OnPrefabInit")]
         public static class PlayerController_OnPrefabInit {
             public static void Postfix(PlayerController __instance) {

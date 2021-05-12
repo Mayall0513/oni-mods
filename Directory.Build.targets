@@ -34,16 +34,14 @@
     <ItemGroup>  
       <!-- <AnimFiles Include="$(ProjectDir)\anim\**\*.*" /> -->
 	  <ArchivedModVersions Include="$(ProjectDir)\archived_versions\**\*.*" />
-      <!-- <TranslationFiles Include="$(ProjectDir)\translations\*.po" /> -->
-	  <TranslationFiles Include="$(ProjectDir)\languages\*.*" />
+      <TranslationFiles Include="$(ProjectDir)\translations\*.po" />
       <!-- <WorldGenFiles Include="$(ProjectDir)\worldgen\**\*.*" /> -->
       <YamlFiles Include="$(ProjectDir)\*.yaml" />
     </ItemGroup>  
 
     <Copy SourceFiles="@(AnimFiles)" DestinationFiles="@(AnimFiles->'$(InstallFolder)\anim\%(RecursiveDir)%(Filename)%(Extension)')" />
 	<Copy SourceFiles="@(ArchivedModVersions)" DestinationFiles="@(ArchivedModVersions->'$(InstallFolder)\archived_versions\%(RecursiveDir)%(Filename)%(Extension)')" />
-    <!-- <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(InstallFolder)\translations" /> -->
-	<Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(InstallFolder)\languages" />
+    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(InstallFolder)\translations" />
     <Copy SourceFiles="@(WorldGenFiles)" DestinationFiles="@(WorldGenFiles->'$(InstallFolder)\worldgen\%(RecursiveDir)%(Filename)%(Extension)')" />
     <Copy SourceFiles="@(YamlFiles)" DestinationFolder="$(InstallFolder)" />
     <Copy SourceFiles="$(ProjectDir)\Preview.png" DestinationFiles="$(InstallFolder)\preview.png" Condition=" $(CopyPreview) == true " />

@@ -34,8 +34,12 @@
 	<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(UsesPLib)' != 'false' ">
+  <ItemGroup Condition=" '$(UsesPLib)' != 'false'  And '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <Reference Include="PLib" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Release/net40/Plib.dll" />
+    <Reference Update="PLib"><Private>true</Private></Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(UsesPLib)' != 'false' And '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Reference Include="PLib" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Debug/net40/Plib.dll" />
     <Reference Update="PLib"><Private>true</Private></Reference>
   </ItemGroup>
 </Project>
