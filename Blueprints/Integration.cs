@@ -101,7 +101,7 @@ namespace Blueprints {
                 { ToolParameterMenu.FILTERLAYERS.LOGIC, defaultSelection },
                 { ToolParameterMenu.FILTERLAYERS.BACKWALL, defaultSelection },
                 { ToolParameterMenu.FILTERLAYERS.DIGPLACER, defaultSelection},
-                { BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES, defaultSelection },
+                //{ BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES, defaultSelection },
             };
         }
     }

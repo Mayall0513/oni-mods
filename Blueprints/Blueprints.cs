@@ -200,7 +200,7 @@ namespace Blueprints {
             Blueprint blueprint = new Blueprint("unnamed", "");
 
             int blueprintHeight = (topLeft.y - bottomRight.y);
-            bool collectingGasTiles = filter.IsActiveLayer(BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES);
+            bool collectingGasTiles = false;// filter.IsActiveLayer(BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES);
 
             for (int x = topLeft.x; x <= bottomRight.x; ++x) {
                 for (int y = bottomRight.y; y <= topLeft.y; ++y) {

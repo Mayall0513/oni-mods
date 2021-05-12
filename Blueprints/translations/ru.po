@@ -17,7 +17,6 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: Blueprints\n"
 
-#. Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_NAME
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_NAME"
 msgid "New Blueprint"
 msgstr "Новый чертеж"
@@ -40,7 +39,7 @@ msgstr "Чертеж отменен!"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_TOOLTIP_TITLE"
 msgid "CREATE BLUEPRINT TOOL"
-msgstr "ИНСТРУМЕНТ СОЗДАНИЯ ЧЕРТЕЖЕЙ"
+msgstr "НОВЫЙ ЧЕРТЕЖ"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_ACTION_DRAG"
 msgid "DRAG"
@@ -72,7 +71,7 @@ msgstr "уменьшение"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP_TITLE"
 msgid "USE BLUEPRINT TOOL"
-msgstr "ИСПОЛЬЗОВАТЬ ЧЕРТЕЖ"
+msgstr "ПРИМЕНИТЬ ЧЕРТЕЖ"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_ACTION_CLICK"
 msgid "CLICK"
