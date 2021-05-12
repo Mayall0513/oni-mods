@@ -52,11 +52,11 @@ msgstr "НАЗАД"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_NAME"
 msgid "Use Blueprint"
-msgstr "Использовать чертеж"
+msgstr "Применить чертеж"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP"
 msgid "Use blueprint {0}"
-msgstr "Использовать чертеж {0}"
+msgstr "Применить чертеж {0}"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS"
 msgid "Loaded {0} blueprints! ({1} total)"

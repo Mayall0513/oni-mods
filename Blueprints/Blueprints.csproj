@@ -4,9 +4,6 @@
     <TargetFramework>net40</TargetFramework>
     <FileVersion>2.8.0.0</FileVersion>
     <RootNamespace>Blueprints</RootNamespace>
-    <TransformOnBuild>true</TransformOnBuild>
-    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
-    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
   </PropertyGroup>
   <ItemGroup>
     <None Include="mod_info.yaml" />
