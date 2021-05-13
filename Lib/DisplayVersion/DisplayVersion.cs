@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using PeterHan.PLib;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace ModFramework {
                 KMod.Mod mod = Global.Instance.modManager.mods[i];
 
                 if ((mod.loaded_content & KMod.Content.DLL) == KMod.Content.DLL) {
-                    if (string.Equals(Path.GetFullPath(mod.label.install_path), currentPath)) {
+                    if (currentPath.Contains(Path.GetFullPath(mod.label.install_path))) {
                         string modTitle = mod.label.title;
 
                         for (int j = 0; j < ___entryParent.childCount; ++j) {
