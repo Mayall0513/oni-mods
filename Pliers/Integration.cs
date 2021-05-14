@@ -1,15 +1,18 @@
 ﻿using Harmony;
 using ModFramework;
 using PeterHan.PLib;
+using PeterHan.PLib.Datafiles;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
 
 namespace Pliers {
-    public static class Mod_OnLoad {
+    public static class Integration {
         public static void OnLoad() {
             PUtil.InitLibrary(false);
+            PLocalization.Register();
+            Localization.RegisterForTranslation(typeof(PliersStrings));
 
             Assembly currentAssembly = Assembly.GetExecutingAssembly();
             string currentAssemblyDirectory = Path.GetDirectoryName(currentAssembly.Location);
@@ -24,71 +27,56 @@ namespace Pliers {
 
             PliersAssets.PLIERS_OPENTOOL = PAction.Register("Pliers.opentool", "Pliers", new PKeyBinding(KKeyCode.None, Modifier.None));
 
-            ModLocalization.LocalizationCompleteEvent += ModLocalizedHandler;
-            ModLocalization.DefaultLocalization = new string[] {
-                PliersStrings.STRING_PLIERS_NAME, "Pliers",
-                PliersStrings.STRING_PLIERS_TOOLTIP, "Disconnect utility networks {0}",
-                PliersStrings.STRING_PLIERS_TOOLTIP_TITLE, "PLIERS",
-                PliersStrings.STRING_PLIERS_ACTION_DRAG, "DRAG",
-                PliersStrings.STRING_PLIERS_ACTION_BACK, "BACK"
-            };
-
             Debug.Log("Pliers Loaded: Version " + currentAssembly.GetName().Version);
-        }
-
-        private static void ModLocalizedHandler(string languageCode) {
-            PliersAssets.PLIERS_TOOLCOLLECTION = ToolMenu.CreateToolCollection(
-                (string) Strings.Get(PliersStrings.STRING_PLIERS_NAME),
-                PliersAssets.PLIERS_ICON_NAME,
-                PliersAssets.PLIERS_OPENTOOL.GetKAction(),
-                PliersAssets.PLIERS_TOOLNAME,
-                string.Format(Strings.Get(PliersStrings.STRING_PLIERS_TOOLTIP).String, "{Hotkey}"),
-                false
-           );
         }
     }
 
-    namespace Patches {
-        [HarmonyPatch(typeof(PlayerController), "OnPrefabInit")]
-        public static class PlayerController_OnPrefabInit {
-            public static void Postfix(PlayerController __instance) {
-                List<InterfaceTool> interfaceTools = new List<InterfaceTool>(__instance.tools);
+    [HarmonyPatch(typeof(PlayerController), "OnPrefabInit")]
+    public static class PlayerController_OnPrefabInit {
+        public static void Postfix(PlayerController __instance) {
+            List<InterfaceTool> interfaceTools = new List<InterfaceTool>(__instance.tools);
 
 
-                GameObject pliersTool = new GameObject(PliersAssets.PLIERS_TOOLNAME);
-                pliersTool.AddComponent<PliersTool>();
+            GameObject pliersTool = new GameObject(PliersAssets.PLIERS_TOOLNAME);
+            pliersTool.AddComponent<PliersTool>();
 
-                pliersTool.transform.SetParent(__instance.gameObject.transform);
-                pliersTool.gameObject.SetActive(true);
-                pliersTool.gameObject.SetActive(false);
+            pliersTool.transform.SetParent(__instance.gameObject.transform);
+            pliersTool.gameObject.SetActive(true);
+            pliersTool.gameObject.SetActive(false);
 
-                interfaceTools.Add(pliersTool.GetComponent<InterfaceTool>());
+            interfaceTools.Add(pliersTool.GetComponent<InterfaceTool>());
 
 
-                __instance.tools = interfaceTools.ToArray();
-            }
+            __instance.tools = interfaceTools.ToArray();
         }
+    }
 
-        [HarmonyPatch(typeof(ToolMenu), "OnPrefabInit")]
-        public static class ToolMenu_OnPrefabInit {
-            public static void Postfix(ToolMenu __instance, List<Sprite> ___icons)
-            {
-                ___icons.Add(PliersAssets.PLIERS_ICON_SPRITE);
-            }
+    [HarmonyPatch(typeof(ToolMenu), "OnPrefabInit")]
+    public static class ToolMenu_OnPrefabInit {
+        public static void Postfix(ToolMenu __instance, List<Sprite> ___icons)
+        {
+            ___icons.Add(PliersAssets.PLIERS_ICON_SPRITE);
         }
+    }
 
-        [HarmonyPatch(typeof(ToolMenu), "CreateBasicTools")]
-        public static class ToolMenu_CreateBasicTools {
-            public static void Prefix(ToolMenu __instance) {
-                __instance.basicTools.Add(PliersAssets.PLIERS_TOOLCOLLECTION);
-            }
+    [HarmonyPatch(typeof(ToolMenu), "CreateBasicTools")]
+    public static class ToolMenu_CreateBasicTools {
+        public static void Prefix(ToolMenu __instance) {
+            __instance.basicTools.Add(ToolMenu.CreateToolCollection(
+                PliersStrings.STRING_PLIERS_NAME,
+                PliersAssets.PLIERS_ICON_NAME,
+                PliersAssets.PLIERS_OPENTOOL.GetKAction(),
+                PliersAssets.PLIERS_TOOLNAME,
+                string.Format(PliersStrings.STRING_PLIERS_TOOLTIP, "{Hotkey}"),
+                false
+            ));
         }
+    }
 
-        [HarmonyPatch(typeof(Game), "DestroyInstances")]
-        public static class Game_DestroyInstances {
-            public static void Postfix() {
-                PliersTool.DestroyInstance();
-            }
+    [HarmonyPatch(typeof(Game), "DestroyInstances")]
+    public static class Game_DestroyInstances {
+        public static void Postfix() {
+            PliersTool.DestroyInstance();
         }
     }
 }

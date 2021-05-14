@@ -53,13 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lib\DisplayVersion\DisplayVersion.csproj" Private="true" />
-    <ProjectReference Include="..\Lib\ModLocalization\ModLocalization.csproj" Private="true" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="mod_info.yaml" />
+    <None Include="translations\ru.po" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,12 +3,12 @@ using PeterHan.PLib;
 using UnityEngine;
 
 namespace Pliers {
-    public static class PliersStrings {
-        public const string STRING_PLIERS_NAME = "PLIERS.NAME";
-        public const string STRING_PLIERS_TOOLTIP = "PLIERS.TOOLTIP";
-        public const string STRING_PLIERS_TOOLTIP_TITLE = "PLIERS.TOOLTIP.TITLE";
-        public const string STRING_PLIERS_ACTION_DRAG = "PLIERS.ACTION.DRAG";
-        public const string STRING_PLIERS_ACTION_BACK = "PLIERS.ACTION.BACK";
+    static class PliersStrings {
+        public static LocString STRING_PLIERS_NAME = "Pliers";
+        public static LocString STRING_PLIERS_TOOLTIP = "Disconnect utility networks {0}";
+        public static LocString STRING_PLIERS_TOOLTIP_TITLE = "PLIERS";
+        public static LocString STRING_PLIERS_ACTION_DRAG = "DRAG";
+        public static LocString STRING_PLIERS_ACTION_BACK = "BACK";
     }
 
     public static class PliersAssets {
