@@ -53,7 +53,7 @@ msgstr "読込"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP"
 msgid "Use blueprint {0}"
-msgstr "設計図を使う{0}"
+msgstr "設計図を使います{0}"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS"
 msgid "Loaded {0} blueprints! ({1} total)"
@@ -169,7 +169,7 @@ msgstr "フォルダにアサイン"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES"
 msgid "Gas Tiles"
-msgstr "ガスタイル"
+msgstr "気体"
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_ALL"
 msgid "All"

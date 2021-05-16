@@ -55,6 +55,9 @@ namespace Pliers {
     public static class ToolMenu_OnPrefabInit {
         public static void Postfix(ToolMenu __instance, List<Sprite> ___icons)
         {
+            if (___icons.Contains(PliersAssets.PLIERS_ICON_SPRITE) ) {
+                ___icons.Remove(PliersAssets.PLIERS_ICON_SPRITE);
+            }
             ___icons.Add(PliersAssets.PLIERS_ICON_SPRITE);
         }
     }

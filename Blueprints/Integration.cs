@@ -84,8 +84,20 @@ namespace Blueprints {
     public static class ToolMenu_OnPrefabInit {
         public static void Postfix(List<Sprite> ___icons)
         {
+            if (___icons.Contains(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE))
+            {
+                ___icons.Remove(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE);
+            }
             ___icons.Add(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE);
+            if (___icons.Contains(BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE))
+            {
+                ___icons.Remove(BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE);
+            }
             ___icons.Add(BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE);
+            if (___icons.Contains(BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE))
+            {
+                ___icons.Remove(BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE);
+            }
             ___icons.Add(BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE);
 
             MultiToolParameterMenu.CreateInstance();
