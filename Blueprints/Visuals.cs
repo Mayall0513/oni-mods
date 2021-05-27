@@ -56,7 +56,7 @@ namespace Blueprints {
             if (batchedAnimController != null) {
                 batchedAnimController.visibilityType = KAnimControllerBase.VisibilityType.Always;
                 batchedAnimController.isMovable = true;
-                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset() + buildingConfig.BuildingDef.placementPivot;
+                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset();
                 batchedAnimController.TintColour = GetVisualizerColor(cell);
 
                 batchedAnimController.SetLayer(LayerMask.NameToLayer("Place"));
@@ -186,7 +186,7 @@ namespace Blueprints {
             if (batchedAnimController != null) {
                 batchedAnimController.visibilityType = KAnimControllerBase.VisibilityType.Always;
                 batchedAnimController.isMovable = true;
-                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset() + buildingConfig.BuildingDef.placementPivot;
+                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset();
             }
 
             VisualsUtilities.SetVisualizerColor(cell, GetVisualizerColor(cell), Visualizer, buildingConfig);
@@ -395,7 +395,7 @@ namespace Blueprints {
 
                 batchedAnimController.visibilityType = KAnimControllerBase.VisibilityType.Always;
                 batchedAnimController.isMovable = true;
-                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset() + buildingConfig.BuildingDef.placementPivot;
+                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset();
                 batchedAnimController.TintColour = GetVisualizerColor(cell);
 
                 batchedAnimController.SetLayer(LayerMask.NameToLayer("Place"));
