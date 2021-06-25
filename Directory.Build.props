@@ -31,8 +31,6 @@
 	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
   <ItemGroup Condition=" '$(UsesPLib)' != 'false' ">
-    <Reference Include="PLib" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/Plib.dll" />
-    <Reference Update="PLib"><Private>true</Private></Reference>
     <Reference Include="PLibCore" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibCore.dll" />
     <Reference Update="PLibCore"><Private>true</Private></Reference>
     <Reference Include="PLibUI" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibUI.dll" />
