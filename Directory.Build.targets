@@ -26,10 +26,10 @@
 
   <Target Name="CopyArtifactsToInstallFolder" AfterTargets="ILRepack" Condition=" '$(AssemblyName)' != 'ModLocalization' And '$(AssemblyName)' != 'MultiFiltration' And '$(AssemblyName)' != 'DisplayVersion' ">
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-      <InstallFolder>..\Release\$(ProjectName)\archived_versions\EX1</InstallFolder>
+      <InstallFolder>..\Release\$(ProjectName)</InstallFolder>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " >
-      <InstallFolder>$(ModFolder)\$(ProjectName) DEV\archived_versions\EX1</InstallFolder>
+      <InstallFolder>$(ModFolder)\$(ProjectName) DEV</InstallFolder>
     </PropertyGroup>
 
     <ItemGroup>  
