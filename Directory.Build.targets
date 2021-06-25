@@ -8,10 +8,11 @@
 
   <Target Name="ILRepack" AfterTargets="Build" Condition=" '$(AssemblyName)' != 'ModLocalization' And '$(AssemblyName)' != 'MultiFiltration' And '$(AssemblyName)' != 'DisplayVersion' ">
     <ItemGroup>
-      <InputAssemblies Include="$(TargetDir)\*.dll"
+      <InputAssemblies 
+	    Include="$(TargetDir)\PLib*.dll"
         Exclude="**\0Harmony.dll" />
+      <InputAssemblies Include="$(TargetDir)\MultiFiltration.dll" Condition=" '$(AssemblyName)' == 'Blueprints' "/>
     </ItemGroup>
-
 
     <ILRepack 
         TargetPlatformVersion="v4"
