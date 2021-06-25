@@ -28,19 +28,17 @@ namespace ModFramework {
             content = Util.KInstantiateUI(baseContent, baseContent.transform.parent.gameObject, false);
             content.transform.GetChild(1).gameObject.SetActive(false);
 
-            PRelativePanel buttonsPanel = new PRelativePanel {
+            var buttonsPanel = new PRelativePanel {
                 BackColor = PUITuning.Colors.ButtonPinkStyle.inactiveColor
             };
 
-            PButton allButton = new PButton {
-                Text = "All"
-            };
+            var allButton = new PButton
+            {
+                Text = "All",
+                OnClick = (_) => SetAll(ToolParameterMenu.ToggleState.On)
+            }.SetKleiPinkStyle();
 
-            allButton.OnClick += (GameObject source) => {
-                Instance.SetAll(ToolParameterMenu.ToggleState.On);
-            };
-
-            PButton noneButton = new PButton {
+            var noneButton = new PButton {
                 Text = "None"
             };
 
