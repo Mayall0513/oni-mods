@@ -55,9 +55,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="archived_versions\old-Vanilla\mod_info.yaml" />
+    <None Include="archived_versions\old-Vanilla\translations\ru.po" />
     <None Include="mod.yaml" />
     <None Include="mod_info.yaml" />
     <None Include="translations\ru.po" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="archived_versions\old-Vanilla\Pliers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
