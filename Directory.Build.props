@@ -31,17 +31,7 @@
 	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
   <ItemGroup Condition=" '$(UsesPLib)' != 'false' ">
-    <Reference Include="PLib" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/Plib.dll" />
+    <Reference Include="PLib" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Release/net40/Plib.dll" />
     <Reference Update="PLib"><Private>true</Private></Reference>
-    <Reference Include="PLibCore" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibCore.dll" />
-    <Reference Update="PLibCore"><Private>true</Private></Reference>
-    <Reference Include="PLibUI" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibUI.dll" />
-    <Reference Update="PLibUI"><Private>true</Private></Reference>
-    <Reference Include="PLibActions" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibActions.dll" />
-    <Reference Update="PLibActions"><Private>true</Private></Reference>
-    <Reference Include="PLibDatabase" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibDatabase.dll" />
-    <Reference Update="PLibDatabase"><Private>true</Private></Reference>
-    <Reference Include="PLibOptions" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibOptions.dll" />
-    <Reference Update="PLibOptions"><Private>true</Private></Reference>
   </ItemGroup>
 </Project>

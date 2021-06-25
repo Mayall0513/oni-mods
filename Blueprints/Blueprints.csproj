@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Blueprints</RootNamespace>
     <AssemblyName>Blueprints</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -56,13 +56,13 @@
     <Compile Include="Visuals.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="mod.yaml" />
     <None Include="mod_info.yaml" />
     <None Include="translations\ja.po" />
     <None Include="translations\ru.po" />
     <None Include="translations\template.pot" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lib\DisplayVersion\DisplayVersion.csproj" Private="true" />
     <ProjectReference Include="..\Lib\ModMultiFiltration\MultiFiltration.csproj" Private="true" />
   </ItemGroup>
   <ItemGroup>

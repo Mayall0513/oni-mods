@@ -1,22 +1,18 @@
-﻿using HarmonyLib;
+﻿using Harmony;
+using ModFramework;
 using PeterHan.PLib;
-using PeterHan.PLib.Actions;
-using PeterHan.PLib.Core;
-using PeterHan.PLib.Database;
+using PeterHan.PLib.Datafiles;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
 
 namespace Pliers {
-    public sealed class Integration : KMod.UserMod2 {
-        public override void OnLoad(Harmony harmony) {
-            base.OnLoad(harmony);
-            PUtil.InitLibrary();
-            //new POptions().RegisterOptions(this, typeof(BlueprintsOptions));
-            LocString.CreateLocStringKeys(typeof(PliersStrings));
-            new PLocalization().Register();
-            //Localization.RegisterForTranslation(typeof(PliersStrings));
+    public static class Integration {
+        public static void OnLoad() {
+            PUtil.InitLibrary(false);
+            PLocalization.Register();
+            Localization.RegisterForTranslation(typeof(PliersStrings));
 
             Assembly currentAssembly = Assembly.GetExecutingAssembly();
             string currentAssemblyDirectory = Path.GetDirectoryName(currentAssembly.Location);
@@ -29,7 +25,7 @@ namespace Pliers {
             PliersAssets.PLIERS_ICON_SPRITE.name = PliersAssets.PLIERS_ICON_NAME;
             PliersAssets.PLIERS_VISUALIZER_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pliers.image_wirecutter_visualizer.dds"), 256, 256);
 
-            PliersAssets.PLIERS_OPENTOOL = new PActionManager().CreateAction("Pliers.opentool", "Pliers", new PKeyBinding(KKeyCode.None, Modifier.None));
+            PliersAssets.PLIERS_OPENTOOL = PAction.Register("Pliers.opentool", "Pliers", new PKeyBinding(KKeyCode.None, Modifier.None));
 
             Debug.Log("Pliers Loaded: Version " + currentAssembly.GetName().Version);
         }
@@ -57,11 +53,12 @@ namespace Pliers {
 
     [HarmonyPatch(typeof(ToolMenu), "OnPrefabInit")]
     public static class ToolMenu_OnPrefabInit {
-        public static void Postfix()
+        public static void Postfix(ToolMenu __instance, List<Sprite> ___icons)
         {
-            if (Assets.Sprites.ContainsKey(PliersAssets.PLIERS_ICON_SPRITE.name))
-                Assets.Sprites.Remove(PliersAssets.PLIERS_ICON_SPRITE.name);
-            Assets.Sprites.Add(PliersAssets.PLIERS_ICON_SPRITE.name, PliersAssets.PLIERS_ICON_SPRITE);
+            if (___icons.Contains(PliersAssets.PLIERS_ICON_SPRITE) ) {
+                ___icons.Remove(PliersAssets.PLIERS_ICON_SPRITE);
+            }
+            ___icons.Add(PliersAssets.PLIERS_ICON_SPRITE);
         }
     }
 
