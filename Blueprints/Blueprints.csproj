@@ -66,7 +66,10 @@
     <None Include="translations\template.pot" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lib\ModMultiFiltration\MultiFiltration.csproj" Private="true" />
+    <ProjectReference Include="..\Lib\ModMultiFiltration\MultiFiltration.csproj" Private="true">
+      <Project>{6D6DD776-B4B9-4362-BE45-2C47D4AB4178}</Project>
+      <Name>MultiFiltration</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="image_createblueprint_visualizer.dds" />
