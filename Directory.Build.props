@@ -1,38 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Template taken from Peter Han project https://github.com/peterhaneve/ONIMods -->
 <Project>
   <Import Condition=" !Exists('Directory.Build.props.user') " Project="Directory.Build.props.default" />
   <Import Condition=" Exists('Directory.Build.props.user') " Project="Directory.Build.props.user" />
 
   <PropertyGroup>
-	<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-	<TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
 	<Deterministic>true</Deterministic>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<Prefer32Bit>false</Prefer32Bit>
+	<FileAlignment>512</FileAlignment>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<LangVersion>9</LangVersion>
+
+
+    <!-- то, что ниже из конфига PLib -->
+    <!--<TargetFramework>net471</TargetFramework>-->
+    <Product>ONIMods</Product>
+    <Authors>Mayall, Pt_Djefferson</Authors>
+    <Copyright>Copyright ©Mayall 2020</Copyright>
+    <SupportedContent>VANILLA_ID,EXPANSION1_ID</SupportedContent>
+    <LastWorkingBuild>0</LastWorkingBuild>
+    <DistributeMod>true</DistributeMod>
+    <ArchivedVersionPath></ArchivedVersionPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Platform)' == 'Spaced Out' ">
+    <DefineConstants>SPACEDOUT</DefineConstants>
+    <APIVersion>2</APIVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Vanilla' ">
+    <DefineConstants>VANILLA</DefineConstants>
+    <APIVersion>1</APIVersion>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
-    <Reference Private="false" />
-    <ProjectReference Private="false" />
+    <Reference Private="False" />
+    <ProjectReference Private="False" />
   </ItemDefinitionGroup>
+
+  <PropertyGroup Condition=" '$(Platform)' == 'Vanilla' ">
+    <GameFolderActive>$(GameFolderVanilla)</GameFolderActive>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' != 'Vanilla' ">
+    <GameFolderActive>$(GameFolderSpacedOut)</GameFolderActive>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
   </ItemGroup>
-  <ItemGroup>
+
+  <ItemGroup Condition=" '$(UsesPLib)' != 'false' ">
     <PackageReference Include="PLib" Version="4.2.0" />
-	<Reference Include="0Harmony" HintPath="$(GameFolder)/0Harmony.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony" HintPath="$(GameFolder)/0Harmony.dll" />
     <Reference Include="Assembly-CSharp" HintPath="$(GameFolder)/Assembly-CSharp.dll" />
     <Reference Include="Assembly-CSharp-firstpass" HintPath="$(GameFolder)/Assembly-CSharp-firstpass.dll" />
     <Reference Include="Newtonsoft.Json" HintPath="$(GameFolder)/Newtonsoft.Json.dll" />
     <Reference Include="UnityEngine" HintPath="$(GameFolder)/UnityEngine.dll" />
     <Reference Include="UnityEngine.CoreModule" HintPath="$(GameFolder)/UnityEngine.CoreModule.dll" />
-	<Reference Include="UnityEngine.ImageConversionModule" HintPath="$(GameFolder)/UnityEngine.ImageConversionModule.dll" />
+    <Reference Include="UnityEngine.ImageConversionModule" HintPath="$(GameFolder)/UnityEngine.ImageConversionModule.dll" />
     <Reference Include="Unity.TextMeshPro" HintPath="$(GameFolder)/Unity.TextMeshPro.dll" />
     <Reference Include="UnityEngine.TextRenderingModule" HintPath="$(GameFolder)/UnityEngine.TextRenderingModule.dll" />
     <Reference Include="UnityEngine.UI" HintPath="$(GameFolder)/UnityEngine.UI.dll" />
     <Reference Include="UnityEngine.UIModule" HintPath="$(GameFolder)/UnityEngine.UIModule.dll" />
     <Reference Include="Newtonsoft.Json" HintPath="$(GameFolder)/Newtonsoft.Json.dll" />
-	<Reference Include="System" />
+    <Reference Include="System" HintPath="$(GameFolder)/System.dll" />
   </ItemGroup>
 
   </Project>

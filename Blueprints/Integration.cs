@@ -22,13 +22,13 @@ namespace Blueprints {
             //Localization.RegisterForTranslation(typeof(BlueprintsStrings));
 
 
-            BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.image_createblueprint_button.dds"), 32, 32);
+            BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.images.image_createblueprint_button.dds"), 32, 32);
             BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE.name = BlueprintsAssets.BLUEPRINTS_CREATE_ICON_NAME;
             BlueprintsAssets.BLUEPRINTS_CREATE_OPENTOOL = new PActionManager().CreateAction("Blueprints.create.opentool", "Create Blueprint", new PKeyBinding(KKeyCode.None, Modifier.None));
 
-            BlueprintsAssets.BLUEPRINTS_CREATE_VISUALIZER_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.image_createblueprint_visualizer.dds"), 256, 256);
+            BlueprintsAssets.BLUEPRINTS_CREATE_VISUALIZER_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.images.image_createblueprint_visualizer.dds"), 256, 256);
 
-            BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.image_useblueprint_button.dds"), 32, 32);
+            BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.images.image_useblueprint_button.dds"), 32, 32);
             BlueprintsAssets.BLUEPRINTS_USE_ICON_SPRITE.name = BlueprintsAssets.BLUEPRINTS_USE_ICON_NAME;
             BlueprintsAssets.BLUEPRINTS_USE_OPENTOOL = new PActionManager().CreateAction("Blueprints.use.opentool", "Use Blueprint", new PKeyBinding(KKeyCode.None, Modifier.None));
             BlueprintsAssets.BLUEPRINTS_USE_CREATEFOLDER = new PActionManager().CreateAction("Blueprints.use.assignfolder", "Assign Folder", new PKeyBinding(KKeyCode.Home, Modifier.None));
@@ -37,12 +37,12 @@ namespace Blueprints {
             BlueprintsAssets.BLUEPRINTS_USE_CYCLEFOLDERS_PREVIOUS = new PActionManager().CreateAction("Blueprints.use.cyclefolders.previous", "Previous Folder", new PKeyBinding(KKeyCode.DownArrow, Modifier.None));
             BlueprintsAssets.BLUEPRINTS_USE_CYCLEBLUEPRINTS_NEXT = new PActionManager().CreateAction("Blueprints.use.cycleblueprints.next", "Next Blueprint", new PKeyBinding(KKeyCode.RightArrow, Modifier.None));
             BlueprintsAssets.BLUEPRINTS_USE_CYCLEBLUEPRINTS_PREVIOUS = new PActionManager().CreateAction("Blueprints.use.cycleblueprints.previous", "Previous Blueprint", new PKeyBinding(KKeyCode.LeftArrow, Modifier.None));
-            BlueprintsAssets.BLUEPRINTS_USE_VISUALIZER_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.image_useblueprint_visualizer.dds"), 256, 256);
+            BlueprintsAssets.BLUEPRINTS_USE_VISUALIZER_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.images.image_useblueprint_visualizer.dds"), 256, 256);
 
-            BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.image_snapshot_button.dds"), 32, 32);
+            BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.images.image_snapshot_button.dds"), 32, 32);
             BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_SPRITE.name = BlueprintsAssets.BLUEPRINTS_SNAPSHOT_ICON_NAME;
             BlueprintsAssets.BLUEPRINTS_SNAPSHOT_OPENTOOL = new PActionManager().CreateAction("Blueprints.snapshot.opentool", "Take Snapshot", new PKeyBinding(KKeyCode.None, Modifier.None));
-            BlueprintsAssets.BLUEPRINTS_SNAPSHOT_VISUALIZER_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.image_snapshot_visualizer.dds"), 256, 256);
+            BlueprintsAssets.BLUEPRINTS_SNAPSHOT_VISUALIZER_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.images.image_snapshot_visualizer.dds"), 256, 256);
 
             BlueprintsAssets.BLUEPRINTS_MULTI_DELETE = new PActionManager().CreateAction("Blueprints.multi.delete", "Delete Blueprint/Snapshot", new PKeyBinding(KKeyCode.Delete, Modifier.None));
 

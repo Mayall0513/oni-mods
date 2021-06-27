@@ -3,34 +3,26 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">Spaced Out</Platform>
     <ProjectGuid>{2D294E8E-129D-4784-8681-F6843850A598}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyTitle>Blueprints</AssemblyTitle>
     <RootNamespace>Blueprints</RootNamespace>
     <AssemblyName>Blueprints</AssemblyName>
-    <FileAlignment>512</FileAlignment>
+    <LastWorkingBuild>469369</LastWorkingBuild>
+    <Platforms>Vanilla;Spaced Out</Platforms>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\$(Platform)\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\$(Platform)\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
@@ -54,8 +46,6 @@
     <None Include="archived_versions\old-Vanilla\mod_info.yaml" />
     <None Include="archived_versions\old-Vanilla\translations\ja.po" />
     <None Include="archived_versions\old-Vanilla\translations\ru.po" />
-    <None Include="mod.yaml" />
-    <None Include="mod_info.yaml" />
     <None Include="translations\ja.po" />
     <None Include="translations\ru.po" />
     <None Include="translations\template.pot" />
@@ -67,14 +57,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="image_createblueprint_visualizer.dds" />
-    <EmbeddedResource Include="image_snapshot_visualizer.dds" />
-    <EmbeddedResource Include="image_useblueprint_visualizer.dds" />
+    <EmbeddedResource Include="images\image_createblueprint_visualizer.dds" />
+    <EmbeddedResource Include="images\image_snapshot_visualizer.dds" />
+    <EmbeddedResource Include="images\image_useblueprint_visualizer.dds" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="image_createblueprint_button.dds" />
-    <EmbeddedResource Include="image_snapshot_button.dds" />
-    <EmbeddedResource Include="image_useblueprint_button.dds" />
+    <EmbeddedResource Include="images\image_createblueprint_button.dds" />
+    <EmbeddedResource Include="images\image_snapshot_button.dds" />
+    <EmbeddedResource Include="images\image_useblueprint_button.dds" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

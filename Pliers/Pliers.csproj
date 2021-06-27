@@ -3,34 +3,26 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">Spaced Out</Platform>
     <ProjectGuid>{45F4DCC1-AA27-4F98-9247-217B7B547EE6}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyTitle>Pliers</AssemblyTitle>
     <RootNamespace>Pliers</RootNamespace>
     <AssemblyName>Pliers</AssemblyName>
-    <FileAlignment>512</FileAlignment>
+    <LastWorkingBuild>469369</LastWorkingBuild>
+    <Platforms>Vanilla;Spaced Out</Platforms>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\$(Platform)\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\$(Platform)\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Utilities.cs" />
@@ -41,10 +33,10 @@
     <Compile Include="PliersToolHoverCard.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="image_wirecutter_button.dds" />
+    <EmbeddedResource Include="images\image_wirecutter_button.dds" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="image_wirecutter_visualizer.dds" />
+    <EmbeddedResource Include="images\image_wirecutter_visualizer.dds" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -52,8 +44,6 @@
   <ItemGroup>
     <None Include="archived_versions\old-Vanilla\mod_info.yaml" />
     <None Include="archived_versions\old-Vanilla\translations\ru.po" />
-    <None Include="mod.yaml" />
-    <None Include="mod_info.yaml" />
     <None Include="translations\ru.po" />
   </ItemGroup>
   <ItemGroup />
