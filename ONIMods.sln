@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Settings", "Soluti
 		readme.md = readme.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{C49583A9-98FD-43F8-A396-048E60F01381}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C} = {C49583A9-98FD-43F8-A396-048E60F01381}
+		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C} = {C49583A9-98FD-43F8-A396-048E60F01381}
+		{6D6DD776-B4B9-4362-BE45-2C47D4AB4178} = {C49583A9-98FD-43F8-A396-048E60F01381}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {342C9BE5-5CB6-48F8-821E-E76A563FE528}

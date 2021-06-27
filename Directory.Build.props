@@ -3,6 +3,13 @@
   <Import Condition=" !Exists('Directory.Build.props.user') " Project="Directory.Build.props.default" />
   <Import Condition=" Exists('Directory.Build.props.user') " Project="Directory.Build.props.user" />
 
+  <PropertyGroup>
+	<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+	<TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+	<Deterministic>true</Deterministic>
+  </PropertyGroup>
+
   <ItemDefinitionGroup>
     <Reference Private="false" />
     <ProjectReference Private="false" />
@@ -12,6 +19,7 @@
     <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="PLib" Version="4.2.0" />
 	<Reference Include="0Harmony" HintPath="$(GameFolder)/0Harmony.dll" />
     <Reference Include="Assembly-CSharp" HintPath="$(GameFolder)/Assembly-CSharp.dll" />
     <Reference Include="Assembly-CSharp-firstpass" HintPath="$(GameFolder)/Assembly-CSharp-firstpass.dll" />
@@ -26,20 +34,5 @@
     <Reference Include="Newtonsoft.Json" HintPath="$(GameFolder)/Newtonsoft.Json.dll" />
 	<Reference Include="System" />
   </ItemGroup>
-  <PropertyGroup>
-	<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-	<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-  </PropertyGroup>
-  <ItemGroup Condition=" '$(UsesPLib)' != 'false' ">
-    <Reference Include="PLibCore" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibCore.dll" />
-    <Reference Update="PLibCore"><Private>true</Private></Reference>
-    <Reference Include="PLibUI" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibUI.dll" />
-    <Reference Update="PLibUI"><Private>true</Private></Reference>
-    <Reference Include="PLibActions" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibActions.dll" />
-    <Reference Update="PLibActions"><Private>true</Private></Reference>
-    <Reference Include="PLibDatabase" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibDatabase.dll" />
-    <Reference Update="PLibDatabase"><Private>true</Private></Reference>
-    <Reference Include="PLibOptions" HintPath="$(SolutionDir)../ONIModsPeterHan/PLib/bin/Spaced Out/Release/net471/PLibOptions.dll" />
-    <Reference Update="PLibOptions"><Private>true</Private></Reference>
-  </ItemGroup>
-</Project>
+
+  </Project>
