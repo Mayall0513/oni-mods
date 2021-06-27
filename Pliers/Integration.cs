@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using PeterHan.PLib;
 using PeterHan.PLib.Actions;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Database;
@@ -13,10 +12,7 @@ namespace Pliers {
         public override void OnLoad(Harmony harmony) {
             base.OnLoad(harmony);
             PUtil.InitLibrary();
-            //new POptions().RegisterOptions(this, typeof(BlueprintsOptions));
-            LocString.CreateLocStringKeys(typeof(PliersStrings));
             new PLocalization().Register();
-            Localization.RegisterForTranslation(typeof(PliersStrings));
 
             Assembly currentAssembly = Assembly.GetExecutingAssembly();
             string currentAssemblyDirectory = Path.GetDirectoryName(currentAssembly.Location);

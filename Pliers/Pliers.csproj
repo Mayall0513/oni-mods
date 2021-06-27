@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Spaced Out</Platform>
     <ProjectGuid>{45F4DCC1-AA27-4F98-9247-217B7B547EE6}</ProjectGuid>
-    <AssemblyTitle>Pliers</AssemblyTitle>
+    <AssemblyTitle>Pliers fixed</AssemblyTitle>
     <RootNamespace>Pliers</RootNamespace>
     <AssemblyName>Pliers</AssemblyName>
     <LastWorkingBuild>469369</LastWorkingBuild>

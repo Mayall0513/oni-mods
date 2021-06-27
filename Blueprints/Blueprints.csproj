@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Spaced Out</Platform>
     <ProjectGuid>{2D294E8E-129D-4784-8681-F6843850A598}</ProjectGuid>
-    <AssemblyTitle>Blueprints</AssemblyTitle>
+    <AssemblyTitle>Blueprints fixed</AssemblyTitle>
     <RootNamespace>Blueprints</RootNamespace>
     <AssemblyName>Blueprints</AssemblyName>
     <LastWorkingBuild>469369</LastWorkingBuild>

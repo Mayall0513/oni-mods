@@ -8,7 +8,8 @@
     <ProjectGuid>{6D6DD776-B4B9-4362-BE45-2C47D4AB4178}</ProjectGuid>
     <RootNamespace>ModFramework</RootNamespace>
     <AssemblyName>MultiFiltration</AssemblyName>
-	<DistributeMod>false</DistributeMod>
+    <UsesPLib>false</UsesPLib>
+    <DistributeMod>false</DistributeMod>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blueprints", "Blueprints\Bl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pliers", "Pliers\Pliers.csproj", "{45F4DCC1-AA27-4F98-9247-217B7B547EE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayVersion", "Lib\DisplayVersion\DisplayVersion.csproj", "{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModLocalization", "Lib\ModLocalization\ModLocalization.csproj", "{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiFiltration", "Lib\ModMultiFiltration\MultiFiltration.csproj", "{6D6DD776-B4B9-4362-BE45-2C47D4AB4178}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Settings", "Solution Settings", "{7342AC2F-3F9F-4D95-9556-559E34BBD7ED}"
@@ -47,22 +43,6 @@ Global
 		{45F4DCC1-AA27-4F98-9247-217B7B547EE6}.Release|Spaced Out.Build.0 = Release|Spaced Out
 		{45F4DCC1-AA27-4F98-9247-217B7B547EE6}.Release|Vanilla.ActiveCfg = Release|Vanilla
 		{45F4DCC1-AA27-4F98-9247-217B7B547EE6}.Release|Vanilla.Build.0 = Release|Vanilla
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}.Debug|Spaced Out.ActiveCfg = Debug|Spaced Out
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}.Debug|Spaced Out.Build.0 = Debug|Spaced Out
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}.Debug|Vanilla.ActiveCfg = Debug|Vanilla
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}.Debug|Vanilla.Build.0 = Debug|Vanilla
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}.Release|Spaced Out.ActiveCfg = Release|Spaced Out
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}.Release|Spaced Out.Build.0 = Release|Spaced Out
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}.Release|Vanilla.ActiveCfg = Release|Vanilla
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C}.Release|Vanilla.Build.0 = Release|Vanilla
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}.Debug|Spaced Out.ActiveCfg = Debug|Spaced Out
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}.Debug|Spaced Out.Build.0 = Debug|Spaced Out
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}.Debug|Vanilla.ActiveCfg = Debug|Vanilla
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}.Debug|Vanilla.Build.0 = Debug|Vanilla
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}.Release|Spaced Out.ActiveCfg = Release|Spaced Out
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}.Release|Spaced Out.Build.0 = Release|Spaced Out
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}.Release|Vanilla.ActiveCfg = Release|Vanilla
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C}.Release|Vanilla.Build.0 = Release|Vanilla
 		{6D6DD776-B4B9-4362-BE45-2C47D4AB4178}.Debug|Spaced Out.ActiveCfg = Debug|Spaced Out
 		{6D6DD776-B4B9-4362-BE45-2C47D4AB4178}.Debug|Spaced Out.Build.0 = Debug|Spaced Out
 		{6D6DD776-B4B9-4362-BE45-2C47D4AB4178}.Debug|Vanilla.ActiveCfg = Debug|Vanilla
@@ -76,8 +56,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E0EDC434-6D56-40A8-A603-83F0E9D7C60C} = {C49583A9-98FD-43F8-A396-048E60F01381}
-		{9F4B0A89-B215-4E2D-9680-6576ACBDCE5C} = {C49583A9-98FD-43F8-A396-048E60F01381}
 		{6D6DD776-B4B9-4362-BE45-2C47D4AB4178} = {C49583A9-98FD-43F8-A396-048E60F01381}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
