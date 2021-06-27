@@ -16,7 +16,7 @@ namespace Pliers {
             //new POptions().RegisterOptions(this, typeof(BlueprintsOptions));
             LocString.CreateLocStringKeys(typeof(PliersStrings));
             new PLocalization().Register();
-            //Localization.RegisterForTranslation(typeof(PliersStrings));
+            Localization.RegisterForTranslation(typeof(PliersStrings));
 
             Assembly currentAssembly = Assembly.GetExecutingAssembly();
             string currentAssemblyDirectory = Path.GetDirectoryName(currentAssembly.Location);

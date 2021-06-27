@@ -19,7 +19,7 @@ namespace Blueprints {
             new POptions().RegisterOptions(this, typeof(BlueprintsOptions));
             LocString.CreateLocStringKeys(typeof(BlueprintsStrings));
             new PLocalization().Register();
-            //Localization.RegisterForTranslation(typeof(BlueprintsStrings));
+            Localization.RegisterForTranslation(typeof(BlueprintsStrings));
 
 
             BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Blueprints.images.image_createblueprint_button.dds"), 32, 32);
