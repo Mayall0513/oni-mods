@@ -1,33 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('..\..\packages\ILMerge.3.0.41\build\ILMerge.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">Spaced Out</Platform>
-    <ProjectGuid>{6D6DD776-B4B9-4362-BE45-2C47D4AB4178}</ProjectGuid>
+    <AssemblyTitle>MultiFiltration Tool</AssemblyTitle>
     <RootNamespace>ModFramework</RootNamespace>
-    <AssemblyName>MultiFiltration</AssemblyName>
-    <UsesPLib>false</UsesPLib>
+    <Description></Description>
+    <AssemblyVersion>1.2.2.0</AssemblyVersion>
+    <Platforms>Vanilla;Spaced Out</Platforms>
     <DistributeMod>false</DistributeMod>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\$(Platform)\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\$(Platform)\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="MultiFilteredDragTool.cs" />
-    <Compile Include="MultiToolParameterMenu.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
