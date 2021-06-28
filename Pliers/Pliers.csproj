@@ -1,54 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">Spaced Out</Platform>
-    <ProjectGuid>{45F4DCC1-AA27-4F98-9247-217B7B547EE6}</ProjectGuid>
     <AssemblyTitle>Pliers fixed</AssemblyTitle>
     <RootNamespace>Pliers</RootNamespace>
-    <AssemblyName>Pliers</AssemblyName>
-    <LastWorkingBuild>469369</LastWorkingBuild>
+    <Description></Description>
+    <AssemblyVersion>1.2.9.0</AssemblyVersion>
     <Platforms>Vanilla;Spaced Out</Platforms>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\$(Platform)\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\$(Platform)\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <LastWorkingBuild>469369</LastWorkingBuild>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Utilities.cs" />
-    <Compile Include="Pliers.cs" />
-    <Compile Include="Integration.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PliersTool.cs" />
-    <Compile Include="PliersToolHoverCard.cs" />
+    <None Remove="images\image_wirecutter_button.dds" />
+    <None Remove="images\image_wirecutter_visualizer.dds" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="images\image_wirecutter_button.dds" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="images\image_wirecutter_visualizer.dds" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="archived_versions\old-Vanilla\mod_info.yaml" />
-    <None Include="archived_versions\old-Vanilla\translations\ru.po" />
-    <None Include="translations\ru.po" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="archived_versions\old-Vanilla\Pliers.dll" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
