@@ -43,7 +43,7 @@ APIVersion: $(APIVersion)
       <ModDescriptionFileContent>
 title: "$(AssemblyTitle) DEV"
 description: "$(Description)"
-staticID: $(AssemblyName) DEV
+staticID: $(AssemblyName)
       </ModDescriptionFileContent>
     </PropertyGroup>
     <WriteLinesToFile File="$(ModDescriptionFile)" Overwrite="true" Lines="$(ModDescriptionFileContent)"/>
@@ -62,10 +62,10 @@ staticID: $(AssemblyName)
   </Target>
 
   <Target Name="ILRepack" AfterTargets="Build">
-    <ItemGroup Condition=" '$(UsesPLib)' != 'false' ">
+    <ItemGroup Condition=" '$(UsesPLib)' != 'false' And '$(DistributeMod)' != 'false' ">
       <InputAssemblies Include="$(TargetDir)PLib*.dll" />
     </ItemGroup>
-    <ItemGroup Condition=" '$(UsesPLib)' == 'false' ">
+    <ItemGroup Condition=" '$(UsesPLib)' == 'false' Or '$(DistributeMod)' == 'false' ">
       <InputAssemblies Include="$(TargetPath)" />
     </ItemGroup>
     <ItemGroup>

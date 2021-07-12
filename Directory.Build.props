@@ -15,12 +15,10 @@
 	<Prefer32Bit>false</Prefer32Bit>
 	<FileAlignment>512</FileAlignment>
 	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<LangVersion>9</LangVersion>
 
-
     <!-- то, что ниже из конфига PLib -->
-    <!--<TargetFramework>net471</TargetFramework>-->
+    <TargetFramework>net471</TargetFramework>
     <Product>ONIMods</Product>
     <Authors>Mayall, Pt_Djefferson</Authors>
     <Copyright>Copyright ©Mayall 2020</Copyright>
@@ -30,7 +28,7 @@
     <ArchivedVersionPath></ArchivedVersionPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Platform)' == 'Spaced Out' ">
+  <PropertyGroup Condition=" '$(Platform)' != 'Vanilla' ">
     <DefineConstants>SPACEDOUT</DefineConstants>
     <APIVersion>2</APIVersion>
   </PropertyGroup>
