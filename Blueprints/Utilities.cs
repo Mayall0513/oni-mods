@@ -6,17 +6,6 @@ using UnityEngine;
 
 namespace Blueprints {
     public static class Utilities {
-        public static Sprite CreateSpriteDXT5(Stream inputStream, int width, int height) {
-            byte[] buffer = new byte[inputStream.Length - 128];
-            inputStream.Seek(128, SeekOrigin.Current);
-            inputStream.Read(buffer, 0, buffer.Length);
-
-            Texture2D texture = new Texture2D(width, height, TextureFormat.DXT5, false);
-            texture.LoadRawTextureData(buffer);
-            texture.Apply(false, true);
-            return Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(0.5F, 0.5F));
-        }
-
         public static string GetBlueprintDirectory() {
             string folderLocation = Path.Combine(Util.RootFolder(), "blueprints");
             if (!Directory.Exists(folderLocation)) {

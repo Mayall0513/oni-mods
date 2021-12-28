@@ -166,7 +166,7 @@ namespace Blueprints {
         }
 
         public override void OnKeyDown(KButtonEvent buttonEvent) {
-            if (buttonEvent.TryConsume(BlueprintsAssets.BLUEPRINTS_MULTI_DELETE.GetKAction())) {
+            if (buttonEvent.TryConsume(Integration.BlueprintsDeleteAction.GetKAction())) {
                 Instance.DeleteBlueprint();
                 GridCompositor.Instance.ToggleMajor(false);
             }

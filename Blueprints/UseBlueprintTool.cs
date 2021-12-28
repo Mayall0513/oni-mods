@@ -95,7 +95,7 @@ namespace Blueprints {
             if (BlueprintsState.LoadedBlueprints.Count > 0) {
                 bool blueprintChanged = false;
 
-                if (buttonEvent.TryConsume(BlueprintsAssets.BLUEPRINTS_USE_CREATEFOLDER.GetKAction())) {
+                if (buttonEvent.TryConsume(Integration.BlueprintsCreateFolderAction.GetKAction())) {
                     static void onConfirmDelegate(string blueprintFolder, FileNameDialog parent) {
                         string newFolder = blueprintFolder.Trim(' ', '/', '\\', Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
@@ -119,7 +119,7 @@ namespace Blueprints {
                     blueprintFolderDialog.Activate();
                 }
 
-                else if (buttonEvent.TryConsume(BlueprintsAssets.BLUEPRINTS_USE_RENAME.GetKAction())) {
+                else if (buttonEvent.TryConsume(Integration.BlueprintsRenameAction.GetKAction())) {
                     static void onConfirmDelegate(string blueprintName, FileNameDialog parent) {
                         BlueprintsState.SelectedBlueprint.Rename(blueprintName);
   
@@ -132,7 +132,7 @@ namespace Blueprints {
                     blueprintNameDialog.Activate();
                 }
 
-                else if (buttonEvent.TryConsume(BlueprintsAssets.BLUEPRINTS_MULTI_DELETE.GetKAction())) {
+                else if (buttonEvent.TryConsume(Integration.BlueprintsDeleteAction.GetKAction())) {
                     static void onConfirmDelegate() {
                         BlueprintsState.SelectedBlueprint.DeleteFile();
                         BlueprintsState.SelectedFolder.RemoveBlueprint(BlueprintsState.SelectedBlueprint);
@@ -157,17 +157,17 @@ namespace Blueprints {
 
                 else if (BlueprintsState.LoadedBlueprints.Count > 0) {
                     if (BlueprintsState.SelectedFolder.BlueprintCount > 1) {
-                        if (buttonEvent.TryConsume(BlueprintsAssets.BLUEPRINTS_USE_CYCLEBLUEPRINTS_NEXT.GetKAction())) {
+                        if (buttonEvent.TryConsume(Integration.BlueprintsCycleBlueprintsNextAction.GetKAction())) {
                             blueprintChanged = BlueprintsState.SelectedFolder.NextBlueprint(); 
                         }
 
-                        else if (buttonEvent.TryConsume(BlueprintsAssets.BLUEPRINTS_USE_CYCLEBLUEPRINTS_PREVIOUS.GetKAction())) {
+                        else if (buttonEvent.TryConsume(Integration.BlueprintsCycleBlueprintsPrevAction.GetKAction())) {
                             blueprintChanged = BlueprintsState.SelectedFolder.PreviousBlueprint();
                         }
                     }
 
                     if (!blueprintChanged && BlueprintsState.LoadedBlueprints.Count > 1) {
-                        if (buttonEvent.TryConsume(BlueprintsAssets.BLUEPRINTS_USE_CYCLEFOLDERS_NEXT.GetKAction())) {
+                        if (buttonEvent.TryConsume(Integration.BlueprintsCycleFoldersNextAction.GetKAction())) {
                             if (++BlueprintsState.SelectedBlueprintFolderIndex >= BlueprintsState.LoadedBlueprints.Count) {
                                 BlueprintsState.SelectedBlueprintFolderIndex = 0;
                             }
@@ -175,7 +175,7 @@ namespace Blueprints {
                             blueprintChanged = true;
                         }
 
-                        else if (buttonEvent.TryConsume(BlueprintsAssets.BLUEPRINTS_USE_CYCLEFOLDERS_PREVIOUS.GetKAction())) {
+                        else if (buttonEvent.TryConsume(Integration.BlueprintsCycleFoldersPrevAction.GetKAction())) {
                             if (--BlueprintsState.SelectedBlueprintFolderIndex < 0) {
                                 BlueprintsState.SelectedBlueprintFolderIndex = BlueprintsState.LoadedBlueprints.Count - 1;
                             }

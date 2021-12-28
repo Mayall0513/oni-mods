@@ -1,12 +1,47 @@
 ﻿using HarmonyLib;
 using ModFramework;
 using PeterHan.PLib.Actions;
+using PeterHan.PLib.UI;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 namespace Blueprints {
-    static class BlueprintsStrings {
+    static class BlueprintsStrings
+    {
+        // Action strings
+        public static string ACTION_CREATE_KEY = "Blueprints.create.opentool";
+        public static LocString ACTION_CREATE_TITLE = "Create Blueprint";
+
+        public static string ACTION_USE_KEY = "Blueprints.use.opentool";
+        public static LocString ACTION_USE_TITLE = "Use Blueprint";
+
+        public static string ACTION_CREATEFOLDER_KEY = "Blueprints.use.assignfolder";
+        public static LocString ACTION_CREATEFOLDER_TITLE = "Create Folder";
+
+        public static string ACTION_RENAME_KEY = "Blueprints.use.rename";
+        public static LocString ACTION_RENAME_TITLE = "Rename Blueprint";
+
+        public static string ACTION_CYCLEFOLDERS_NEXT_KEY = "Blueprints.use.cyclefolders.next";
+        public static LocString ACTION_CYCLEFOLDERS_NEXT_TITLE = "Next Folder";
+
+        public static string ACTION_CYCLEFOLDERS_PREV_KEY = "Blueprints.use.cyclefolders.previous";
+        public static LocString ACTION_CYCLEFOLDERS_PREV_TITLE = "Previous Folder";
+
+        public static string ACTION_CYCLEBLUEPRINTS_NEXT_KEY = "Blueprints.use.cycleblueprints.next";
+        public static LocString ACTION_CYCLEBLUEPRINTS_NEXT_TITLE = "Next Blueprint";
+
+        public static string ACTION_CYCLEBLUEPRINTS_PREV_KEY = "Blueprints.use.cycleblueprints.previous";
+        public static LocString ACTION_CYCLEBLUEPRINTS_PREV_TITLE = "Previous Blueprint";
+
+        public static string ACTION_SNAPSHOT_KEY = "Blueprints.snapshot.opentool";
+        public static LocString ACTION_SNAPSHOT_TITLE = "Take Snapshot";
+
+        public static string ACTION_DELETE_KEY = "Blueprints.multi.delete";
+        public static LocString ACTION_DELETE_TITLE = "Delete Blueprint/Snapshot";
+
+
+        // Tool strings
         public static LocString STRING_BLUEPRINTS_CREATE_NAME = "New Blueprint";
         public static LocString STRING_BLUEPRINTS_CREATE_TOOLTIP = "Create blueprint {0}";
         public static LocString STRING_BLUEPRINTS_CREATE_EMPTY = "Blueprint would have been empty!";
@@ -57,34 +92,17 @@ namespace Blueprints {
     public static class BlueprintsAssets {
         public static BlueprintsOptions Options { get; set; } = new BlueprintsOptions();
 
-        public static string BLUEPRINTS_CREATE_TOOLNAME = "CreateBlueprintTool";
         public static string BLUEPRINTS_CREATE_ICON_NAME = "BLUEPRINTS.TOOL.CREATE_BLUEPRINT.ICON";
         public static Sprite BLUEPRINTS_CREATE_ICON_SPRITE;
         public static Sprite BLUEPRINTS_CREATE_VISUALIZER_SPRITE;
-        public static PAction BLUEPRINTS_CREATE_OPENTOOL;
-        public static ToolMenu.ToolCollection BLUEPRINTS_CREATE_TOOLCOLLECTION;
 
-        public static string BLUEPRINTS_USE_TOOLNAME = "UseBlueprintTool";
         public static string BLUEPRINTS_USE_ICON_NAME = "BLUEPRINTS.TOOL.USE_BLUEPRINT.ICON";
         public static Sprite BLUEPRINTS_USE_ICON_SPRITE;
         public static Sprite BLUEPRINTS_USE_VISUALIZER_SPRITE;
-        public static PAction BLUEPRINTS_USE_OPENTOOL;
-        public static PAction BLUEPRINTS_USE_CREATEFOLDER;
-        public static PAction BLUEPRINTS_USE_RENAME;
-        public static PAction BLUEPRINTS_USE_CYCLEBLUEPRINTS_PREVIOUS;
-        public static PAction BLUEPRINTS_USE_CYCLEBLUEPRINTS_NEXT;
-        public static PAction BLUEPRINTS_USE_CYCLEFOLDERS_PREVIOUS;
-        public static PAction BLUEPRINTS_USE_CYCLEFOLDERS_NEXT;
-        public static ToolMenu.ToolCollection BLUEPRINTS_USE_TOOLCOLLECTION;
 
-        public static string BLUEPRINTS_SNAPSHOT_TOOLNAME = "SnapshotTool";
         public static string BLUEPRINTS_SNAPSHOT_ICON_NAME = "BLUEPRINTS.TOOL.SNAPSHOT.ICON";
         public static Sprite BLUEPRINTS_SNAPSHOT_ICON_SPRITE;
         public static Sprite BLUEPRINTS_SNAPSHOT_VISUALIZER_SPRITE;
-        public static PAction BLUEPRINTS_SNAPSHOT_OPENTOOL;
-        public static ToolMenu.ToolCollection BLUEPRINTS_SNAPSHOT_TOOLCOLLECTION;
-
-        public static PAction BLUEPRINTS_MULTI_DELETE;
 
         public static Color BLUEPRINTS_COLOR_VALIDPLACEMENT = Color.white;
         public static Color BLUEPRINTS_COLOR_INVALIDPLACEMENT = Color.red;
@@ -109,6 +127,23 @@ namespace Blueprints {
             BLUEPRINTS_PATH_DISALLOWEDCHARACTERS.Remove('\\');
             BLUEPRINTS_PATH_DISALLOWEDCHARACTERS.Remove(Path.DirectorySeparatorChar);
             BLUEPRINTS_PATH_DISALLOWEDCHARACTERS.Remove(Path.AltDirectorySeparatorChar);
+
+            BLUEPRINTS_CREATE_ICON_SPRITE = PUIUtils.LoadSprite("Blueprints.images.createblueprint_button.png");
+            BLUEPRINTS_CREATE_ICON_SPRITE.name = BLUEPRINTS_CREATE_ICON_NAME;
+            BLUEPRINTS_CREATE_VISUALIZER_SPRITE = PUIUtils.LoadSprite("Blueprints.images.createblueprint_visualizer.png");
+
+            BLUEPRINTS_USE_ICON_SPRITE = PUIUtils.LoadSprite("Blueprints.images.useblueprint_button.png");
+            BLUEPRINTS_USE_ICON_SPRITE.name = BLUEPRINTS_USE_ICON_NAME;
+            BLUEPRINTS_USE_VISUALIZER_SPRITE = PUIUtils.LoadSprite("Blueprints.images.useblueprint_visualizer.png");
+
+            BLUEPRINTS_SNAPSHOT_ICON_SPRITE = PUIUtils.LoadSprite("Blueprints.images.snapshot_button.png");
+            BLUEPRINTS_SNAPSHOT_ICON_SPRITE.name = BLUEPRINTS_SNAPSHOT_ICON_NAME;
+            BLUEPRINTS_SNAPSHOT_VISUALIZER_SPRITE = PUIUtils.LoadSprite("Blueprints.images.snapshot_visualizer.png");
+        }
+        public static void AddSpriteToCollection(Sprite sprite) {
+            if (Assets.Sprites.ContainsKey(sprite.name))
+                Assets.Sprites.Remove(sprite.name);
+            Assets.Sprites.Add(sprite.name, sprite);
         }
     }
 

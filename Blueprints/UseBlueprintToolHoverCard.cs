@@ -27,19 +27,19 @@ namespace Blueprints {
 
             if (BlueprintsState.HasBlueprints()) {
                 if (BlueprintsState.SelectedFolder.BlueprintCount > 0) {
-                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_CYCLEFOLDERS, UI.FormatAsHotkey("[" + GameUtil.GetActionString(BlueprintsAssets.BLUEPRINTS_USE_CYCLEFOLDERS_NEXT.GetKAction()) + "]"), UI.FormatAsHotkey("[" + GameUtil.GetActionString(BlueprintsAssets.BLUEPRINTS_USE_CYCLEFOLDERS_PREVIOUS.GetKAction()) + "]")), Styles_Instruction.Standard);
+                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_CYCLEFOLDERS, UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsCycleFoldersNextAction.GetKAction()) + "]"), UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsCycleFoldersPrevAction.GetKAction()) + "]")), Styles_Instruction.Standard);
                     drawer.NewLine(20);
 
-                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_CYCLEBLUEPRINTS, UI.FormatAsHotkey("[" + GameUtil.GetActionString(BlueprintsAssets.BLUEPRINTS_USE_CYCLEBLUEPRINTS_NEXT.GetKAction()) + "]"), UI.FormatAsHotkey("[" + GameUtil.GetActionString(BlueprintsAssets.BLUEPRINTS_USE_CYCLEBLUEPRINTS_PREVIOUS.GetKAction()) + "]")), Styles_Instruction.Standard);
+                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_CYCLEBLUEPRINTS, UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsCycleBlueprintsNextAction.GetKAction()) + "]"), UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsCycleBlueprintsPrevAction.GetKAction()) + "]")), Styles_Instruction.Standard);
                     drawer.NewLine(32);
 
-                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(BlueprintsAssets.BLUEPRINTS_USE_CREATEFOLDER.GetKAction()) + "]")), Styles_Instruction.Standard);
+                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsCreateFolderAction.GetKAction()) + "]")), Styles_Instruction.Standard);
                     drawer.NewLine(20);
 
-                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_NAMEBLUEPRINT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(BlueprintsAssets.BLUEPRINTS_USE_RENAME.GetKAction()) + "]")), Styles_Instruction.Standard);
+                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_NAMEBLUEPRINT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsRenameAction.GetKAction()) + "]")), Styles_Instruction.Standard);
                     drawer.NewLine(20);
 
-                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_DELETEBLUEPRINT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(BlueprintsAssets.BLUEPRINTS_MULTI_DELETE.GetKAction()) + "]")), Styles_Instruction.Standard);
+                    drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_DELETEBLUEPRINT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsDeleteAction.GetKAction()) + "]")), Styles_Instruction.Standard);
 
                     if (PrefabErrorCount > 0) {
                         drawer.NewLine(32);

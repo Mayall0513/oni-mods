@@ -91,7 +91,7 @@ msgstr "Используйте {0} и {1} для выбора чертежа."
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT"
 msgid "Press {0} to assign folder."
-msgstr "Нажмите {0} для задания папки с чертежами."
+msgstr "Нажмите {0} для создания папки под чертежи."
 
 msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA"
 msgid "Same folder provided - no change made."

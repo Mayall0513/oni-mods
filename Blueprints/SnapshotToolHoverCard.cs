@@ -26,7 +26,7 @@ namespace Blueprints {
 
             if (UsingSnapshot) {
                 drawer.NewLine(32);
-                drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_NEWSNAPSHOT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(BlueprintsAssets.BLUEPRINTS_MULTI_DELETE.GetKAction()) + "]")), Styles_Instruction.Standard);
+                drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_NEWSNAPSHOT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsDeleteAction.GetKAction()) + "]")), Styles_Instruction.Standard);
             }
 
             drawer.EndShadowBar();
