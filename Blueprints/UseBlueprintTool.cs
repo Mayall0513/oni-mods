@@ -29,9 +29,10 @@ namespace Blueprints {
 
             offsetObject.transform.SetParent(visualizer.transform);
             offsetObject.transform.localPosition = new Vector3(0, Grid.HalfCellSizeInMeters);
+            var sprite = spriteRenderer.sprite;
             offsetObject.transform.localScale = new Vector3(
-                Grid.CellSizeInMeters / (spriteRenderer.sprite.texture.width / spriteRenderer.sprite.pixelsPerUnit),
-                Grid.CellSizeInMeters / (spriteRenderer.sprite.texture.height / spriteRenderer.sprite.pixelsPerUnit)
+                Grid.CellSizeInMeters / (sprite.texture.width / sprite.pixelsPerUnit),
+                Grid.CellSizeInMeters / (sprite.texture.height / sprite.pixelsPerUnit)
             );
 
             offsetObject.SetLayerRecursively(LayerMask.NameToLayer("Overlay"));
@@ -48,7 +49,7 @@ namespace Blueprints {
         protected override void OnActivateTool() {
             base.OnActivateTool();
 
-            ToolMenu.Instance.PriorityScreen.Show(true);
+            ToolMenu.Instance.PriorityScreen.Show();
 
             if (BlueprintsState.HasBlueprints()) {
                 GridCompositor.Instance.ToggleMajor(true);
@@ -96,44 +97,44 @@ namespace Blueprints {
                 bool blueprintChanged = false;
 
                 if (buttonEvent.TryConsume(Integration.BlueprintsCreateFolderAction.GetKAction())) {
-                    static void onConfirmDelegate(string blueprintFolder, FileNameDialog parent) {
+                    static void OnConfirmDelegate(string blueprintFolder, FileNameDialog parent) {
                         string newFolder = blueprintFolder.Trim(' ', '/', '\\', Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
                         if (newFolder == BlueprintsState.SelectedBlueprint.Folder) {
-                            PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA, null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime, false, false);
+                            PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA, null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
                         }
 
                         else {
                             string blueprintName = BlueprintsState.SelectedBlueprint.FriendlyName;
                             
                             BlueprintsState.SelectedBlueprint.SetFolder(newFolder);
-                            PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_MOVEDBLUEPRINT, blueprintName, newFolder), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime, false, false);
+                            PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_MOVEDBLUEPRINT, blueprintName, newFolder), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
                         }
                         
                         SpeedControlScreen.Instance.Unpause(false);
                         parent.Deactivate();
                     }
 
-                    FileNameDialog blueprintFolderDialog = UIUtilities.CreateFolderDialog(onConfirmDelegate);
+                    FileNameDialog blueprintFolderDialog = UIUtilities.CreateFolderDialog(OnConfirmDelegate);
                     SpeedControlScreen.Instance.Pause(false);
                     blueprintFolderDialog.Activate();
                 }
 
                 else if (buttonEvent.TryConsume(Integration.BlueprintsRenameAction.GetKAction())) {
-                    static void onConfirmDelegate(string blueprintName, FileNameDialog parent) {
+                    static void OnConfirmDelegate(string blueprintName, FileNameDialog parent) {
                         BlueprintsState.SelectedBlueprint.Rename(blueprintName);
   
                         SpeedControlScreen.Instance.Unpause(false);
                         parent.Deactivate();
                     }
 
-                    FileNameDialog blueprintNameDialog = UIUtilities.CreateTextDialog(BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE, false, onConfirmDelegate);
+                    FileNameDialog blueprintNameDialog = UIUtilities.CreateTextDialog(BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE, false, OnConfirmDelegate);
                     SpeedControlScreen.Instance.Pause(false);
                     blueprintNameDialog.Activate();
                 }
 
                 else if (buttonEvent.TryConsume(Integration.BlueprintsDeleteAction.GetKAction())) {
-                    static void onConfirmDelegate() {
+                    static void OnConfirmDelegate() {
                         BlueprintsState.SelectedBlueprint.DeleteFile();
                         BlueprintsState.SelectedFolder.RemoveBlueprint(BlueprintsState.SelectedBlueprint);
 
@@ -152,7 +153,7 @@ namespace Blueprints {
                         }
                     }
 
-                    PUIElements.ShowConfirmDialog(GameScreenManager.Instance.GetParent(GameScreenManager.UIRenderTarget.ScreenSpaceOverlay), "Are you sure you want to delete \"" + BlueprintsState.SelectedBlueprint.FriendlyName + "\"?", onConfirmDelegate, null, "YES", "NO");
+                    PUIElements.ShowConfirmDialog(GameScreenManager.Instance.GetParent(GameScreenManager.UIRenderTarget.ScreenSpaceOverlay), "Are you sure you want to delete \"" + BlueprintsState.SelectedBlueprint.FriendlyName + "\"?", OnConfirmDelegate, null, "YES", "NO");
                 }
 
                 else if (BlueprintsState.LoadedBlueprints.Count > 0) {

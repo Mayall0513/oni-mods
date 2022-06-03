@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Blueprints {
     public sealed class SnapshotToolHoverCard : HoverTextConfiguration {
-        public bool UsingSnapshot { get; set; } = false;
+        public bool UsingSnapshot { get; set; }
 
         public SnapshotToolHoverCard() {
             ToolName = BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP_TITLE;
@@ -12,10 +12,10 @@ namespace Blueprints {
         public override void UpdateHoverElements(List<KSelectable> hoveredObjects) {
             HoverTextScreen screenInstance = HoverTextScreen.Instance;
             HoverTextDrawer drawer = screenInstance.BeginDrawing();
-            drawer.BeginShadowBar(false);
+            drawer.BeginShadowBar();
 
             DrawTitle(screenInstance, drawer);
-            drawer.NewLine(26);
+            drawer.NewLine();
 
             drawer.DrawIcon(screenInstance.GetSprite("icon_mouse_left"), 20);
             drawer.DrawText(UsingSnapshot ? BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_ACTION_CLICK : BlueprintsStrings.STRING_BLUEPRINTS_CREATE_ACTION_DRAG, Styles_Instruction.Standard);

@@ -27,4 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Lib\ModMultiFiltration\MultiFiltration.csproj" Private="true" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="PLib" Version="4.8.1" />
+  </ItemGroup>
 </Project>

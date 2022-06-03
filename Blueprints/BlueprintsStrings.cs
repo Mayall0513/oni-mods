@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using ModFramework;
-using PeterHan.PLib.Actions;
 using PeterHan.PLib.UI;
 using System.Collections.Generic;
 using System.IO;
@@ -90,7 +89,7 @@ namespace Blueprints {
     }
 
     public static class BlueprintsAssets {
-        public static BlueprintsOptions Options { get; set; } = new BlueprintsOptions();
+        public static BlueprintsOptions Options { get; set; } = new();
 
         public static string BLUEPRINTS_CREATE_ICON_NAME = "BLUEPRINTS.TOOL.CREATE_BLUEPRINT.ICON";
         public static Sprite BLUEPRINTS_CREATE_ICON_SPRITE;
@@ -112,7 +111,7 @@ namespace Blueprints {
         public static HashSet<char> BLUEPRINTS_FILE_DISALLOWEDCHARACTERS;
         public static HashSet<char> BLUEPRINTS_PATH_DISALLOWEDCHARACTERS;
 
-        public static HashSet<string> BLUEPRINTS_AUTOFILE_IGNORE = new HashSet<string>();
+        public static HashSet<string> BLUEPRINTS_AUTOFILE_IGNORE = new();
         public static FileSystemWatcher BLUEPRINTS_AUTOFILE_WATCHER;
 
         static BlueprintsAssets() {
@@ -148,28 +147,24 @@ namespace Blueprints {
     }
 
     public static class BlueprintsState {
-        private static int selectedBlueprintFolderIndex;
+        private static int _selectedBlueprintFolderIndex;
         public static int SelectedBlueprintFolderIndex {
-            get {
-                return selectedBlueprintFolderIndex;
-            }
+            get => _selectedBlueprintFolderIndex;
 
-            set {
-                selectedBlueprintFolderIndex = Mathf.Clamp(value, 0, LoadedBlueprints.Count - 1);
-            }
+            set => _selectedBlueprintFolderIndex = Mathf.Clamp(value, 0, LoadedBlueprints.Count - 1);
         }
 
-        public static List<BlueprintFolder> LoadedBlueprints { get; } = new List<BlueprintFolder>();
+        public static List<BlueprintFolder> LoadedBlueprints { get; } = new();
         public static BlueprintFolder SelectedFolder => LoadedBlueprints[SelectedBlueprintFolderIndex];
         public static Blueprint SelectedBlueprint => SelectedFolder.SelectedBlueprint;
 
         public static bool InstantBuild => DebugHandler.InstantBuildMode || Game.Instance.SandboxModeActive && SandboxToolParameterMenu.instance.settings.InstantBuild;
 
-        private static readonly List<IVisual> foundationVisuals = new List<IVisual>();
-        private static readonly List<IVisual> dependentVisuals = new List<IVisual>();
-        private static readonly List<ICleanableVisual> cleanableVisuals = new List<ICleanableVisual>();
+        private static readonly List<IVisual> FoundationVisuals = new();
+        private static readonly List<IVisual> DependentVisuals = new();
+        private static readonly List<ICleanableVisual> CleanableVisuals = new();
 
-        public static readonly Dictionary<int, CellColorPayload> ColoredCells = new Dictionary<int, CellColorPayload>();
+        public static readonly Dictionary<int, CellColorPayload> ColoredCells = new();
 
         public static bool HasBlueprints() {
             if (LoadedBlueprints.Count == 0) {
@@ -293,51 +288,51 @@ namespace Blueprints {
             }
 
             foreach (Vector2I digLocation in blueprint.DigLocations) {
-                foundationVisuals.Add(new DigVisual(Grid.XYToCell(topLeft.x + digLocation.x, topLeft.y + digLocation.y), digLocation));
+                FoundationVisuals.Add(new DigVisual(Grid.XYToCell(topLeft.x + digLocation.x, topLeft.y + digLocation.y), digLocation));
             }
 
             if (UseBlueprintTool.Instance.GetComponent<UseBlueprintToolHoverCard>() != null) {
-                UseBlueprintTool.Instance.GetComponent<UseBlueprintToolHoverCard>().PrefabErrorCount = errors;
+                UseBlueprintTool.Instance.GetComponent<UseBlueprintToolHoverCard>().prefabErrorCount = errors;
             }
         }
 
         private static void AddVisual(IVisual visual, BuildingDef buildingDef) {
             if (buildingDef.IsFoundation) {
-                foundationVisuals.Add(visual);
+                FoundationVisuals.Add(visual);
             }
 
             else {
-                dependentVisuals.Add(visual);
+                DependentVisuals.Add(visual);
             }
 
             if (visual is ICleanableVisual) {
-                cleanableVisuals.Add((ICleanableVisual) visual);
+                CleanableVisuals.Add((ICleanableVisual) visual);
             }
         }
 
         public static void UpdateVisual(Vector2I topLeft) {
             CleanDirtyVisuals();
 
-            foundationVisuals.ForEach(foundationVisual => foundationVisual.MoveVisualizer(Grid.XYToCell(topLeft.x + foundationVisual.Offset.x, topLeft.y + foundationVisual.Offset.y)));
-            dependentVisuals.ForEach(dependentVisual => dependentVisual.MoveVisualizer(Grid.XYToCell(topLeft.x + dependentVisual.Offset.x, topLeft.y + dependentVisual.Offset.y)));
+            FoundationVisuals.ForEach(foundationVisual => foundationVisual.MoveVisualizer(Grid.XYToCell(topLeft.x + foundationVisual.Offset.x, topLeft.y + foundationVisual.Offset.y)));
+            DependentVisuals.ForEach(dependentVisual => dependentVisual.MoveVisualizer(Grid.XYToCell(topLeft.x + dependentVisual.Offset.x, topLeft.y + dependentVisual.Offset.y)));
         }
 
         public static void UseBlueprint(Vector2I topLeft) {
             CleanDirtyVisuals();
 
-            foundationVisuals.ForEach(foundationVisual => foundationVisual.TryUse(Grid.XYToCell(topLeft.x + foundationVisual.Offset.x, topLeft.y + foundationVisual.Offset.y)));
-            dependentVisuals.ForEach(dependentVisual => dependentVisual.TryUse(Grid.XYToCell(topLeft.x + dependentVisual.Offset.x, topLeft.y + dependentVisual.Offset.y)));
+            FoundationVisuals.ForEach(foundationVisual => foundationVisual.TryUse(Grid.XYToCell(topLeft.x + foundationVisual.Offset.x, topLeft.y + foundationVisual.Offset.y)));
+            DependentVisuals.ForEach(dependentVisual => dependentVisual.TryUse(Grid.XYToCell(topLeft.x + dependentVisual.Offset.x, topLeft.y + dependentVisual.Offset.y)));
         }
 
         public static void ClearVisuals() {
             CleanDirtyVisuals();
-            cleanableVisuals.Clear();
+            CleanableVisuals.Clear();
 
-            foundationVisuals.ForEach(foundationVisual => Object.DestroyImmediate(foundationVisual.Visualizer));
-            foundationVisuals.Clear();
+            FoundationVisuals.ForEach(foundationVisual => Object.DestroyImmediate(foundationVisual.Visualizer));
+            FoundationVisuals.Clear();
 
-            dependentVisuals.ForEach(dependantVisual => Object.DestroyImmediate(dependantVisual.Visualizer));
-            dependentVisuals.Clear();
+            DependentVisuals.ForEach(dependantVisual => Object.DestroyImmediate(dependantVisual.Visualizer));
+            DependentVisuals.Clear();
         }
 
         public static void CleanDirtyVisuals() {
@@ -347,7 +342,7 @@ namespace Blueprints {
             }
 
             ColoredCells.Clear();
-            cleanableVisuals.ForEach(cleanableVisual => cleanableVisual.Clean());
+            CleanableVisuals.ForEach(cleanableVisual => cleanableVisual.Clean());
         }
     }
 

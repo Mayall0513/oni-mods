@@ -1,9 +1,10 @@
 ﻿using STRINGS;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace Blueprints {
     public sealed class UseBlueprintToolHoverCard : HoverTextConfiguration {
-        public int PrefabErrorCount = 0;
+        [FormerlySerializedAs("PrefabErrorCount")] public int prefabErrorCount;
 
         public UseBlueprintToolHoverCard() {
             ToolName = BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP_TITLE;
@@ -12,10 +13,10 @@ namespace Blueprints {
         public override void UpdateHoverElements(List<KSelectable> hoveredObjects) {
             HoverTextScreen screenInstance = HoverTextScreen.Instance;
             HoverTextDrawer drawer = screenInstance.BeginDrawing();
-            drawer.BeginShadowBar(false);
+            drawer.BeginShadowBar();
 
             DrawTitle(screenInstance, drawer);
-            drawer.NewLine(26);
+            drawer.NewLine();
 
             drawer.DrawIcon(screenInstance.GetSprite("icon_mouse_left"), 20);
             drawer.DrawText(BlueprintsStrings.STRING_BLUEPRINTS_USE_ACTION_CLICK, Styles_Instruction.Standard);
@@ -41,10 +42,10 @@ namespace Blueprints {
 
                     drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_DELETEBLUEPRINT, UI.FormatAsHotkey("[" + GameUtil.GetActionString(Integration.BlueprintsDeleteAction.GetKAction()) + "]")), Styles_Instruction.Standard);
 
-                    if (PrefabErrorCount > 0) {
+                    if (prefabErrorCount > 0) {
                         drawer.NewLine(32);
-                        drawer.DrawIcon(screenInstance.GetSprite("iconWarning"), 18);
-                        drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_ERRORMESSAGE, PrefabErrorCount), Styles_Instruction.Selected);
+                        drawer.DrawIcon(screenInstance.GetSprite("iconWarning"));
+                        drawer.DrawText(string.Format(BlueprintsStrings.STRING_BLUEPRINTS_USE_ERRORMESSAGE, prefabErrorCount), Styles_Instruction.Selected);
                     }
 
                     drawer.NewLine(32);

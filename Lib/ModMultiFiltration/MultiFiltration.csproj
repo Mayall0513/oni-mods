@@ -8,4 +8,7 @@
     <Platforms>Vanilla;Spaced Out</Platforms>
     <DistributeMod>false</DistributeMod>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Update="PLib" Version="4.8.1" />
+  </ItemGroup>
 </Project>

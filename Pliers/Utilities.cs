@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 
 namespace Pliers {
     public static class Utilities {
-        public static Sprite CreateSpriteDXT5(Stream inputStream, int width, int height) {
+        public static Sprite CreateSpriteDxt5(Stream inputStream, int width, int height) {
             byte[] buffer = new byte[inputStream.Length - 128];
             inputStream.Seek(128, SeekOrigin.Current);
             inputStream.Read(buffer, 0, buffer.Length);

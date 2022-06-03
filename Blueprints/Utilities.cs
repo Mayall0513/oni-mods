@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -25,7 +24,7 @@ namespace Blueprints {
                 Filter = "*.*"
             };
 
-            BlueprintsAssets.BLUEPRINTS_AUTOFILE_WATCHER.Created += (object sender, FileSystemEventArgs eventArgs) => {
+            BlueprintsAssets.BLUEPRINTS_AUTOFILE_WATCHER.Created += (sender, eventArgs) => {
                 if (BlueprintsAssets.BLUEPRINTS_AUTOFILE_IGNORE.Contains(eventArgs.FullPath)) {
                     BlueprintsAssets.BLUEPRINTS_AUTOFILE_IGNORE.Remove(eventArgs.FullPath);
                     return;
@@ -72,7 +71,7 @@ namespace Blueprints {
         public static bool LoadBlueprint(string blueprintLocation, out Blueprint blueprint) {
             blueprint = new Blueprint(blueprintLocation);
             if (!blueprint.ReadBinary()) {
-                blueprint.ReadJSON();
+                blueprint.ReadJson();
             }
 
             return !blueprint.IsEmpty();
@@ -105,22 +104,7 @@ namespace Blueprints {
                 return true;
             }
 
-            if (buildingDef.ShowInBuildMenu && !buildingDef.Deprecated) {
-                foreach (PlanScreen.PlanInfo planScreen in TUNING.BUILDINGS.PLANORDER)
-                {
-                    if (!(planScreen.data is null)) {
-                        foreach (string buildingID in planScreen.data as IList<string>)
-                        {
-                            if (buildingID == buildingDef.PrefabID)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-
-            return false;
+            return PlanScreen.Instance.IsDefBuildable(buildingDef);
         }
     }
 
@@ -133,7 +117,8 @@ namespace Blueprints {
             TMP_InputField inputField = Traverse.Create(textDialog).Field("inputField").GetValue<TMP_InputField>();
             KButton confirmButton = Traverse.Create(textDialog).Field("confirmButton").GetValue<KButton>();
             if (inputField != null && confirmButton && confirmButton != null && allowEmpty) {
-                confirmButton.onClick += delegate () {
+                confirmButton.onClick += delegate
+                {
                     if (textDialog.onConfirm != null && inputField.text != null && inputField.text.Length == 0) {
                         textDialog.onConfirm.Invoke(inputField.text);
                     }

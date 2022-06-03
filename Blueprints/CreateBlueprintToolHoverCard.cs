@@ -9,10 +9,10 @@ namespace Blueprints {
         public override void UpdateHoverElements(List<KSelectable> hoveredObjects) {
             HoverTextScreen screenInstance = HoverTextScreen.Instance;
             HoverTextDrawer drawer = screenInstance.BeginDrawing();
-            drawer.BeginShadowBar(false);
+            drawer.BeginShadowBar();
 
             DrawTitle(screenInstance, drawer);
-            drawer.NewLine(26);
+            drawer.NewLine();
 
             drawer.DrawIcon(screenInstance.GetSprite("icon_mouse_left"), 20);
             drawer.DrawText(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_ACTION_DRAG, Styles_Instruction.Standard);
