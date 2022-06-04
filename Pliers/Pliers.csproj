@@ -4,7 +4,7 @@
     <AssemblyTitle>Pliers fixed</AssemblyTitle>
     <RootNamespace>Pliers</RootNamespace>
     <Description></Description>
-    <AssemblyVersion>1.2.9.0</AssemblyVersion>
+    <AssemblyVersion>1.2.9.1</AssemblyVersion>
     <Platforms>Vanilla;Spaced Out</Platforms>
     <LastWorkingBuild>469369</LastWorkingBuild>
   </PropertyGroup>
