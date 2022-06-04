@@ -16,6 +16,7 @@ using System.Reflection;
 #endif
 using TMPro;
 using UnityEngine;
+// ReSharper disable InconsistentNaming
 
 namespace Blueprints {
     public sealed class Integration : KMod.UserMod2 {
@@ -48,9 +49,9 @@ namespace Blueprints {
             new PLocalization().Register();
 
             BlueprintsCreateAction = new PActionManager().CreateAction(BlueprintsStrings.ACTION_CREATE_KEY,
-                BlueprintsStrings.ACTION_CREATE_TITLE, new PKeyBinding(KKeyCode.None));
+                BlueprintsStrings.ACTION_CREATE_TITLE, new PKeyBinding());
             BlueprintsUseAction = new PActionManager().CreateAction(BlueprintsStrings.ACTION_USE_KEY,
-                BlueprintsStrings.ACTION_USE_TITLE, new PKeyBinding(KKeyCode.None));
+                BlueprintsStrings.ACTION_USE_TITLE, new PKeyBinding());
             BlueprintsCreateFolderAction = new PActionManager().CreateAction(BlueprintsStrings.ACTION_CREATEFOLDER_KEY,
                 BlueprintsStrings.ACTION_CREATEFOLDER_TITLE, new PKeyBinding(KKeyCode.Home));
             BlueprintsRenameAction = new PActionManager().CreateAction(BlueprintsStrings.ACTION_RENAME_KEY,
@@ -64,7 +65,7 @@ namespace Blueprints {
             BlueprintsCycleBlueprintsPrevAction = new PActionManager().CreateAction(BlueprintsStrings.ACTION_CYCLEBLUEPRINTS_PREV_KEY,
                 BlueprintsStrings.ACTION_CYCLEBLUEPRINTS_PREV_TITLE, new PKeyBinding(KKeyCode.LeftArrow));
             BlueprintsSnapshotAction = new PActionManager().CreateAction(BlueprintsStrings.ACTION_SNAPSHOT_KEY,
-                BlueprintsStrings.ACTION_SNAPSHOT_TITLE, new PKeyBinding(KKeyCode.None));
+                BlueprintsStrings.ACTION_SNAPSHOT_TITLE, new PKeyBinding());
             BlueprintsDeleteAction = new PActionManager().CreateAction(BlueprintsStrings.ACTION_DELETE_KEY,
                 BlueprintsStrings.ACTION_DELETE_TITLE, new PKeyBinding(KKeyCode.Delete));
 
@@ -77,11 +78,11 @@ namespace Blueprints {
         }
 
         [HarmonyPatch(typeof(PlayerController), "OnPrefabInit")]
-        public static class PlayerController_OnPrefabInit_Patch {
+        public static class PlayerControllerOnPrefabInitPatch {
             public static void Postfix(PlayerController __instance) {
                 //Добавляем инструменты (не конопки): Создать, Использовать, Снимок.
                 var interfaceTools = new List<InterfaceTool>(__instance.tools);
-                var createBlueprintTool = new GameObject(typeof(CreateBlueprintTool).Name, typeof(CreateBlueprintTool));
+                var createBlueprintTool = new GameObject(nameof(CreateBlueprintTool), typeof(CreateBlueprintTool));
                 createBlueprintTool.transform.SetParent(__instance.gameObject.transform);
                 createBlueprintTool.gameObject.SetActive(true);
                 createBlueprintTool.gameObject.SetActive(false);
@@ -114,7 +115,7 @@ namespace Blueprints {
         }
 
         [HarmonyPatch(typeof(ToolMenu), "OnPrefabInit")]
-        public static class ToolMenu_OnPrefabInit {
+        public static class ToolMenuOnPrefabInit {
             public static void Postfix()
             {
                 MultiToolParameterMenu.CreateInstance();
@@ -136,13 +137,13 @@ namespace Blueprints {
         }
 
         [HarmonyPatch(typeof(ToolMenu), "CreateBasicTools")]
-        public static class ToolMenu_CreateBasicTools {
+        public static class ToolMenuCreateBasicTools {
             public static void Prefix(ToolMenu __instance) {
                 __instance.basicTools.Add(ToolMenu.CreateToolCollection(
                         BlueprintsStrings.STRING_BLUEPRINTS_CREATE_NAME,
                         BlueprintsAssets.BLUEPRINTS_CREATE_ICON_NAME,
                         BlueprintsCreateAction.GetKAction(),
-                        typeof(CreateBlueprintTool).Name,
+                        nameof(CreateBlueprintTool),
                         string.Format(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_TOOLTIP, "{Hotkey}"),
                         true
                     ));
@@ -168,7 +169,7 @@ namespace Blueprints {
         }
 
         [HarmonyPatch(typeof(FileNameDialog), "OnSpawn")]
-        public static class FileNameDialog_OnSpawn {
+        public static class FileNameDialogOnSpawn {
             public static void Postfix(FileNameDialog __instance, TMP_InputField ___inputField) {
                 if (__instance.name.StartsWith("BlueprintsMod_")) {
                     ___inputField.onValueChanged.RemoveAllListeners();
@@ -190,7 +191,7 @@ namespace Blueprints {
         }
 
         [HarmonyPatch(typeof(Game), "DestroyInstances")]
-        public static class Game_DestroyInstances {
+        public static class GameDestroyInstances {
             public static void Postfix() {
                 CreateBlueprintTool.DestroyInstance();
                 UseBlueprintTool.DestroyInstance();
@@ -202,7 +203,7 @@ namespace Blueprints {
         }
 
         [HarmonyPatch(typeof(BlockTileRenderer), "GetCellColour")]
-        public static class BlockTileRenderer_GetCellColour {
+        public static class BlockTileRendererGetCellColour {
             public static void Postfix(int cell, SimHashes element, ref Color __result) {
                 if (__result != Color.red && element == SimHashes.Void && BlueprintsState.ColoredCells.ContainsKey(cell)) {
                     __result = BlueprintsState.ColoredCells[cell].Color;

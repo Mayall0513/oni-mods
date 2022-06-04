@@ -29,9 +29,10 @@ namespace Blueprints {
 
             offsetObject.transform.SetParent(visualizer.transform);
             offsetObject.transform.localPosition = new Vector3(0, Grid.HalfCellSizeInMeters);
+            var sprite = spriteRenderer.sprite;
             offsetObject.transform.localScale = new Vector3(
-                Grid.CellSizeInMeters / (spriteRenderer.sprite.texture.width / spriteRenderer.sprite.pixelsPerUnit),
-                Grid.CellSizeInMeters / (spriteRenderer.sprite.texture.height / spriteRenderer.sprite.pixelsPerUnit)
+                Grid.CellSizeInMeters / (sprite.texture.width / sprite.pixelsPerUnit),
+                Grid.CellSizeInMeters / (sprite.texture.height / sprite.pixelsPerUnit)
             );
 
             offsetObject.SetLayerRecursively(LayerMask.NameToLayer("Overlay"));
@@ -75,7 +76,7 @@ namespace Blueprints {
                 }
 
                 else {
-                    void onConfirmDelegate(string blueprintName, FileNameDialog parent) {
+                    void OnConfirmDelegate(string blueprintName, FileNameDialog parent) {
                         blueprint.Rename(blueprintName, false);
                         blueprint.SetFolder("");
 
@@ -85,7 +86,7 @@ namespace Blueprints {
                         parent.Deactivate();
                     }
 
-                    FileNameDialog blueprintNameDialog = UIUtilities.CreateTextDialog(BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE, false, onConfirmDelegate);
+                    FileNameDialog blueprintNameDialog = UIUtilities.CreateTextDialog(BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE, false, OnConfirmDelegate);
                     SpeedControlScreen.Instance.Pause(false);
 
                     blueprintNameDialog.onCancel = delegate {

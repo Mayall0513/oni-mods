@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+// ReSharper disable InconsistentNaming
 
 namespace Pliers {
     public sealed class Integration : KMod.UserMod2 {
@@ -21,18 +22,18 @@ namespace Pliers {
             PliersAssets.PLIERS_PATH_CONFIGFILE = Path.Combine(PliersAssets.PLIERS_PATH_CONFIGFOLDER, "config.json");
             PliersAssets.PLIERS_PATH_KEYCODESFILE = Path.Combine(PliersAssets.PLIERS_PATH_CONFIGFOLDER, "keycodes.txt");
 
-            PliersAssets.PLIERS_ICON_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pliers.images.image_wirecutter_button.dds"), 32, 32);
+            PliersAssets.PLIERS_ICON_SPRITE = Utilities.CreateSpriteDxt5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pliers.images.image_wirecutter_button.dds"), 32, 32);
             PliersAssets.PLIERS_ICON_SPRITE.name = PliersAssets.PLIERS_ICON_NAME;
-            PliersAssets.PLIERS_VISUALIZER_SPRITE = Utilities.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pliers.images.image_wirecutter_visualizer.dds"), 256, 256);
+            PliersAssets.PLIERS_VISUALIZER_SPRITE = Utilities.CreateSpriteDxt5(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pliers.images.image_wirecutter_visualizer.dds"), 256, 256);
 
-            PliersAssets.PLIERS_OPENTOOL = new PActionManager().CreateAction("Pliers.opentool", "Pliers", new PKeyBinding(KKeyCode.None, Modifier.None));
+            PliersAssets.PLIERS_OPENTOOL = new PActionManager().CreateAction("Pliers.opentool", "Pliers", new PKeyBinding());
 
             Debug.Log("Pliers Loaded: Version " + currentAssembly.GetName().Version);
         }
     }
 
     [HarmonyPatch(typeof(PlayerController), "OnPrefabInit")]
-    public static class PlayerController_OnPrefabInit {
+    public static class PlayerControllerOnPrefabInit {
         public static void Postfix(PlayerController __instance) {
             List<InterfaceTool> interfaceTools = new List<InterfaceTool>(__instance.tools);
 
@@ -52,7 +53,7 @@ namespace Pliers {
     }
 
     [HarmonyPatch(typeof(ToolMenu), "OnPrefabInit")]
-    public static class ToolMenu_OnPrefabInit {
+    public static class ToolMenuOnPrefabInit {
         public static void Postfix()
         {
             if (Assets.Sprites.ContainsKey(PliersAssets.PLIERS_ICON_SPRITE.name))
@@ -62,7 +63,7 @@ namespace Pliers {
     }
 
     [HarmonyPatch(typeof(ToolMenu), "CreateBasicTools")]
-    public static class ToolMenu_CreateBasicTools {
+    public static class ToolMenuCreateBasicTools {
         public static void Prefix(ToolMenu __instance) {
             __instance.basicTools.Add(ToolMenu.CreateToolCollection(
                 PliersStrings.STRING_PLIERS_NAME,
@@ -76,7 +77,7 @@ namespace Pliers {
     }
 
     [HarmonyPatch(typeof(Game), "DestroyInstances")]
-    public static class Game_DestroyInstances {
+    public static class GameDestroyInstances {
         public static void Postfix() {
             PliersTool.DestroyInstance();
         }

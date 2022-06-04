@@ -4,10 +4,10 @@ using System.Linq;
 namespace ModFramework {
     public class MultiFilteredDragTool : DragTool {
         public virtual Dictionary<string, ToolParameterMenu.ToggleState> DefaultParameters { get; set; } = new Dictionary<string, ToolParameterMenu.ToggleState>();
-        public virtual bool OverlaySynced { get; set; } = false;
+        public virtual bool OverlaySynced { get; set; }
 
         private Dictionary<string, ToolParameterMenu.ToggleState> cachedParameters;
-        private bool isSynced = false;
+        private bool isSynced;
 
         protected override void OnActivateTool() {
             base.OnActivateTool();

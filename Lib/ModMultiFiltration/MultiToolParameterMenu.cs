@@ -25,7 +25,7 @@ namespace ModFramework {
             GameObject baseContent = ToolMenu.Instance.toolParameterMenu.content;
             GameObject baseWidgetContainer = ToolMenu.Instance.toolParameterMenu.widgetContainer;
 
-            content = Util.KInstantiateUI(baseContent, baseContent.transform.parent.gameObject, false);
+            content = Util.KInstantiateUI(baseContent, baseContent.transform.parent.gameObject);
             content.transform.GetChild(1).gameObject.SetActive(false);
 
             var buttonsPanel = new PRelativePanel {
@@ -42,7 +42,7 @@ namespace ModFramework {
                 Text = "None"
             };
 
-            noneButton.OnClick += (GameObject source) => {
+            noneButton.OnClick += source => {
                 Instance.SetAll(ToolParameterMenu.ToggleState.Off);
             };
 
@@ -51,10 +51,10 @@ namespace ModFramework {
             };
 
             syncCheckBox.SetKleiPinkStyle();
-            syncCheckBox.OnRealize += (GameObject realized) => {
+            syncCheckBox.OnRealize += realized => {
                 syncMultiToggle = realized.GetComponent<MultiToggle>();
             };
-            syncCheckBox.OnChecked += (GameObject source, int state) => {
+            syncCheckBox.OnChecked += (source, state) => {
                 if (state == PCheckBox.STATE_UNCHECKED) {
                     syncMultiToggle.ChangeState(PCheckBox.STATE_CHECKED);
                 }
@@ -84,11 +84,11 @@ namespace ModFramework {
             content.SetActive(false);
         }
 
-        public void PopulateMenu(Dictionary<string, ToolParameterMenu.ToggleState> parameters) {
+        public void PopulateMenu(Dictionary<string, ToolParameterMenu.ToggleState> inputParameters) {
             ClearMenu();
-            this.parameters = new Dictionary<string, ToolParameterMenu.ToggleState>(parameters);
+            this.parameters = new Dictionary<string, ToolParameterMenu.ToggleState>(inputParameters);
 
-            foreach (KeyValuePair<string, ToolParameterMenu.ToggleState> parameter in parameters) {
+            foreach (KeyValuePair<string, ToolParameterMenu.ToggleState> parameter in inputParameters) {
                 GameObject widetPrefab = Util.KInstantiateUI(ToolMenu.Instance.toolParameterMenu.widgetPrefab, widgetContainer, true);
                 widetPrefab.GetComponentInChildren<LocText>().text = Strings.Get("STRINGS.UI.TOOLS.FILTERLAYERS." + parameter.Key);
 
@@ -108,7 +108,7 @@ namespace ModFramework {
                 }
 
                 toggle.onClick += () => {
-                    foreach (KeyValuePair<string, GameObject> widget in this.widgets) {
+                    foreach (KeyValuePair<string, GameObject> widget in widgets) {
                         if (widget.Value == toggle.transform.parent.gameObject) {
                             if (this.parameters[widget.Key] == ToolParameterMenu.ToggleState.Disabled) {
                                 break;
