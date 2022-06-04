@@ -16,7 +16,4 @@
     <EmbeddedResource Include="images\image_wirecutter_button.dds" />
     <EmbeddedResource Include="images\image_wirecutter_visualizer.dds" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="PLib" Version="4.8.1" />
-  </ItemGroup>
 </Project>
