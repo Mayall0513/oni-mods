@@ -114,5 +114,12 @@ staticID: $(AssemblyName)
     <Copy SourceFiles="$(ModDescriptionFile)" DestinationFolder="$(RootInstallFolder)" />
     <Copy SourceFiles="$(ProjectDir)\Preview.png" DestinationFiles="$(InstallFolder)\preview.png" Condition=" $(CopyPreview) == true " />
     <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(InstallFolder)\$(TargetFileName)" />
+
+    <ZipDirectory
+      Condition=" '$(Configuration)' == 'Release' "
+      SourceDirectory="..\Release\$(ProjectName)"
+      DestinationFile="..\Release\$(AssemblyName).zip"
+      Overwrite="true"
+    />
   </Target>
 </Project>
