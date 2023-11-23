@@ -30,7 +30,7 @@ namespace Pliers {
             PliersAssets.PLIERS_OPENTOOL = new PActionManager().CreateAction("Pliers.opentool", "Pliers", new PKeyBinding());
 
             new PVersionCheck().Register(this, new SteamVersionChecker());
-            Debug.Log("Pliers Loaded: Version " + currentAssembly.GetName().Version);
+            Debug.Log("Pliers fixed loaded: Version " + Assembly.GetExecutingAssembly().GetName().Version + " mod.label.id:" + mod.label.id);
         }
     }
 
