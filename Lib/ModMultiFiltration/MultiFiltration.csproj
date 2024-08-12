@@ -4,7 +4,7 @@
     <AssemblyTitle>MultiFiltration Tool</AssemblyTitle>
     <RootNamespace>ModFramework</RootNamespace>
     <Description></Description>
-    <AssemblyVersion>1.2.9.6</AssemblyVersion>
+    <AssemblyVersion>1.2.9.8</AssemblyVersion>
     <Platforms>Vanilla;Spaced Out</Platforms>
     <DistributeMod>false</DistributeMod>
   </PropertyGroup>
