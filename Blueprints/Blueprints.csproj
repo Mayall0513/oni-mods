@@ -4,8 +4,8 @@
     <AssemblyTitle>Blueprints fixed</AssemblyTitle>
     <RootNamespace>Blueprints</RootNamespace>
     <Description></Description>
-    <AssemblyVersion>2.4.9.8</AssemblyVersion>
-    <FileVersion>2.4.9.8</FileVersion>
+    <AssemblyVersion>2.4.9.9</AssemblyVersion>
+    <FileVersion>2.4.9.9</FileVersion>
     <Platforms>Vanilla;Spaced Out</Platforms>
     <LastWorkingBuild>535720</LastWorkingBuild>
   </PropertyGroup>
