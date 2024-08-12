@@ -5,6 +5,7 @@
     <RootNamespace>Pliers</RootNamespace>
     <Description></Description>
     <AssemblyVersion>1.2.9.8</AssemblyVersion>
+    <FileVersion>1.2.9.8</FileVersion>
     <Platforms>Vanilla;Spaced Out</Platforms>
     <LastWorkingBuild>535720</LastWorkingBuild>
   </PropertyGroup>

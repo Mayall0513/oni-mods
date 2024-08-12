@@ -11,9 +11,7 @@ using PeterHan.PLib.Options;
 using PeterHan.PLib.PatchManager;
 using Rendering;
 using System.Collections.Generic;
-#if DEBUG
 using System.Reflection;
-#endif
 using TMPro;
 using UnityEngine;
 // ReSharper disable InconsistentNaming
@@ -72,9 +70,7 @@ namespace Blueprints {
             Utilities.AttachFileWatcher();
 
             new PVersionCheck().Register(this, new SteamVersionChecker());
-#if DEBUG
             Debug.Log("Blueprints fixed loaded: Version " + Assembly.GetExecutingAssembly().GetName().Version + " mod.label.id:" + mod.label.id);
-#endif
         }
 
         [HarmonyPatch(typeof(PlayerController), "OnPrefabInit")]

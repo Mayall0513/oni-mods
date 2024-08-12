@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using PeterHan.PLib.Actions;
+using PeterHan.PLib.AVC;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Database;
 using System.Collections.Generic;
@@ -28,7 +29,8 @@ namespace Pliers {
 
             PliersAssets.PLIERS_OPENTOOL = new PActionManager().CreateAction("Pliers.opentool", "Pliers", new PKeyBinding());
 
-            Debug.Log("Pliers Loaded: Version " + currentAssembly.GetName().Version);
+            new PVersionCheck().Register(this, new SteamVersionChecker());
+            Debug.Log("Pliers fixed loaded: Version " + Assembly.GetExecutingAssembly().GetName().Version + " mod.label.id:" + mod.label.id);
         }
     }
 
