@@ -90,7 +90,7 @@ namespace ModFramework {
 
             foreach (KeyValuePair<string, ToolParameterMenu.ToggleState> parameter in inputParameters) {
                 GameObject widetPrefab = Util.KInstantiateUI(ToolMenu.Instance.toolParameterMenu.widgetPrefab, widgetContainer, true);
-                widetPrefab.GetComponentInChildren<LocText>().text = Strings.Get("STRINGS.UI.TOOLS.FILTERLAYERS." + parameter.Key);
+                widetPrefab.GetComponentInChildren<LocText>().text = Strings.Get("STRINGS.UI.TOOLS.FILTERLAYERS." + parameter.Key + ".NAME");
 
                 MultiToggle toggle = widetPrefab.GetComponentInChildren<MultiToggle>();
                 switch (parameter.Value) {
