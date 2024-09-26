@@ -1,23 +1,10 @@
-﻿using Harmony;
-using System;
-using System.Collections.Generic;
+﻿using HarmonyLib;
 using System.IO;
 using TMPro;
 using UnityEngine;
 
 namespace Blueprints {
     public static class Utilities {
-        public static Sprite CreateSpriteDXT5(Stream inputStream, int width, int height) {
-            byte[] buffer = new byte[inputStream.Length - 128];
-            inputStream.Seek(128, SeekOrigin.Current);
-            inputStream.Read(buffer, 0, buffer.Length);
-
-            Texture2D texture = new Texture2D(width, height, TextureFormat.DXT5, false);
-            texture.LoadRawTextureData(buffer);
-            texture.Apply(false, true);
-            return Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(0.5F, 0.5F));
-        }
-
         public static string GetBlueprintDirectory() {
             string folderLocation = Path.Combine(Util.RootFolder(), "blueprints");
             if (!Directory.Exists(folderLocation)) {
@@ -37,7 +24,7 @@ namespace Blueprints {
                 Filter = "*.*"
             };
 
-            BlueprintsAssets.BLUEPRINTS_AUTOFILE_WATCHER.Created += (object sender, FileSystemEventArgs eventArgs) => {
+            BlueprintsAssets.BLUEPRINTS_AUTOFILE_WATCHER.Created += (sender, eventArgs) => {
                 if (BlueprintsAssets.BLUEPRINTS_AUTOFILE_IGNORE.Contains(eventArgs.FullPath)) {
                     BlueprintsAssets.BLUEPRINTS_AUTOFILE_IGNORE.Remove(eventArgs.FullPath);
                     return;
@@ -84,7 +71,7 @@ namespace Blueprints {
         public static bool LoadBlueprint(string blueprintLocation, out Blueprint blueprint) {
             blueprint = new Blueprint(blueprintLocation);
             if (!blueprint.ReadBinary()) {
-                blueprint.ReadJSON();
+                blueprint.ReadJson();
             }
 
             return !blueprint.IsEmpty();
@@ -117,17 +104,7 @@ namespace Blueprints {
                 return true;
             }
 
-            if (buildingDef.ShowInBuildMenu && !buildingDef.Deprecated) {
-                foreach (PlanScreen.PlanInfo planScreen in TUNING.BUILDINGS.PLANORDER) {
-                    foreach (string buildingID in planScreen.data as IList<string>) {
-                        if (buildingID == buildingDef.PrefabID) {
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
+            return PlanScreen.Instance.IsDefBuildable(buildingDef);
         }
     }
 
@@ -140,7 +117,8 @@ namespace Blueprints {
             TMP_InputField inputField = Traverse.Create(textDialog).Field("inputField").GetValue<TMP_InputField>();
             KButton confirmButton = Traverse.Create(textDialog).Field("confirmButton").GetValue<KButton>();
             if (inputField != null && confirmButton && confirmButton != null && allowEmpty) {
-                confirmButton.onClick += delegate () {
+                confirmButton.onClick += delegate
+                {
                     if (textDialog.onConfirm != null && inputField.text != null && inputField.text.Length == 0) {
                         textDialog.onConfirm.Invoke(inputField.text);
                     }
@@ -162,7 +140,7 @@ namespace Blueprints {
         }
 
         public static FileNameDialog CreateFolderDialog(System.Action<string, FileNameDialog> onConfirm = null) {
-            string title = Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_FOLDERBLUEPRINT_TITLE);
+            string title = BlueprintsStrings.STRING_BLUEPRINTS_FOLDERBLUEPRINT_TITLE;
 
             FileNameDialog folderDialog = CreateTextDialog(title, true, onConfirm);
             folderDialog.name = "BlueprintsMod_FolderDialog_" + title;

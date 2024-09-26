@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Template taken from Peter Han project https://github.com/peterhaneve/ONIMods -->
+<Project>
+  <Target Name="SetPlatform" BeforeTargets="CoreCompile">
+    <PropertyGroup>
+      <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="ClearGameFolderCopyLocal" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="$(GameFolderActive)\*" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="GetAssmeblyVersion" AfterTargets="Build">
+    <GetAssemblyIdentity
+        AssemblyFiles="$(TargetPath)">
+      <Output
+          TaskParameter="Assemblies"
+          ItemName="MyAssemblyIdentities"/>
+    </GetAssemblyIdentity>
+
+    <Message Text="Assmebly Version: %(MyAssemblyIdentities.Version)"/>
+  </Target>
+  
+  <Target Name="WriteModInfoFile" AfterTargets="Build" Condition=" '$(DistributeMod)' == 'true' ">
+    <PropertyGroup>
+      <ModInfoFile>$(IntermediateOutputPath)\mod_info.yaml</ModInfoFile>
+      <ModInfoFileContent>
+supportedContent: $(SupportedContent)
+minimumSupportedBuild: $(LastWorkingBuild)
+version: %(MyAssemblyIdentities.Version)
+APIVersion: $(APIVersion)
+      </ModInfoFileContent>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(ModInfoFile)" Overwrite="true" Lines="$(ModInfoFileContent)"/>
+  </Target>
+
+  <Target Name="WriteModDescriptionFileD" AfterTargets="Build" Condition=" '$(DistributeMod)' == 'true' And '$(Configuration)' == 'Debug' ">
+    <PropertyGroup>
+      <ModDescriptionFile>$(IntermediateOutputPath)\mod.yaml</ModDescriptionFile>
+      <ModDescriptionFileContent>
+title: "$(AssemblyTitle) DEV"
+description: "$(Description)"
+staticID: $(AssemblyName)
+      </ModDescriptionFileContent>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(ModDescriptionFile)" Overwrite="true" Lines="$(ModDescriptionFileContent)"/>
+  </Target>
+
+  <Target Name="WriteModDescriptionFileR" AfterTargets="Build" Condition=" '$(DistributeMod)' == 'true' And '$(Configuration)' == 'Release' ">
+    <PropertyGroup>
+      <ModDescriptionFile>$(IntermediateOutputPath)\mod.yaml</ModDescriptionFile>
+      <ModDescriptionFileContent>
+title: "$(AssemblyTitle)"
+description: "$(Description)"
+staticID: $(AssemblyName)
+      </ModDescriptionFileContent>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(ModDescriptionFile)" Overwrite="true" Lines="$(ModDescriptionFileContent)"/>
+  </Target>
+
+  <Target Name="ILRepack" AfterTargets="Build">
+    <ItemGroup Condition=" '$(UsesPLib)' != 'false' And '$(DistributeMod)' != 'false' ">
+      <InputAssemblies Include="$(TargetDir)PLib*.dll" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(UsesPLib)' == 'false' Or '$(DistributeMod)' == 'false' ">
+      <InputAssemblies Include="$(TargetPath)" />
+    </ItemGroup>
+    <ItemGroup>
+      <InputAssemblies Include="$(TargetDir)\MultiFiltration.dll" Condition=" '$(AssemblyName)' == 'Blueprints' "/>
+    </ItemGroup>
+
+    <ILRepack 
+        TargetPlatformVersion="v4"
+        OutputType="SameAsPrimaryAssembly"
+        MainAssembly="$(TargetPath)"
+        OutputAssembly="$(TargetPath)"
+        InputAssemblies="@(InputAssemblies)"
+        XmlDocumentation="true"
+        Internalize="true"
+        WilcardInputAssemblies="true"
+        WorkingDirectory="$(GameFolderActive)" />
+  </Target>
+
+  <Target Name="CopyArtifactsToInstallFolder" AfterTargets="ILRepack" Condition=" '$(DistributeMod)' == 'true' ">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <RootInstallFolder>..\Release\$(ProjectName)</RootInstallFolder>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <RootInstallFolder>$(ModFolder)\$(ProjectName) DEV</RootInstallFolder>
+    </PropertyGroup>
+    <PropertyGroup>
+      <InstallFolder>$(RootInstallFolder)$(ArchivedVersionPath)</InstallFolder>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <AnimFiles Include="$(ProjectDir)\anim\**\*.*" />
+	  <ArchivedModVersions Include="$(ProjectDir)\archived_versions\**\*.*" />
+      <TranslationFiles Include="$(ProjectDir)\translations\*.po" />
+      <WorldGenFiles Include="$(ProjectDir)\worldgen\**\*.*" />
+      <WorldGenTemplates Include="$(ProjectDir)\templates\**\*.*" />
+      <YamlFiles Include="$(ProjectDir)\*.yaml" />
+    </ItemGroup>  
+
+    <Copy SourceFiles="@(AnimFiles)" DestinationFiles="@(AnimFiles->'$(InstallFolder)\anim\%(RecursiveDir)%(Filename)%(Extension)')" />
+	<Copy SourceFiles="@(ArchivedModVersions)" DestinationFiles="@(ArchivedModVersions->'$(InstallFolder)\archived_versions\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(InstallFolder)\translations" />
+    <Copy SourceFiles="@(WorldGenFiles)" DestinationFiles="@(WorldGenFiles->'$(InstallFolder)\worldgen\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(WorldGenTemplates)" DestinationFiles="@(WorldGenTemplates->'$(InstallFolder)\templates\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(YamlFiles)" DestinationFolder="$(InstallFolder)" />
+    <Copy SourceFiles="$(ModInfoFile)" DestinationFolder="$(InstallFolder)" />
+    <Copy SourceFiles="$(ModDescriptionFile)" DestinationFolder="$(RootInstallFolder)" />
+    <Copy SourceFiles="$(ProjectDir)\Preview.png" DestinationFiles="$(InstallFolder)\preview.png" Condition=" $(CopyPreview) == true " />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(InstallFolder)\$(TargetFileName)" />
+
+    <ZipDirectory
+      Condition=" '$(Configuration)' == 'Release' "
+      SourceDirectory="..\Release\$(ProjectName)"
+      DestinationFile="..\Release\$(AssemblyName).zip"
+      Overwrite="true"
+    />
+  </Target>
+</Project>

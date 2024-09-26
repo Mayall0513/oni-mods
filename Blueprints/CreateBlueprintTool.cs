@@ -1,7 +1,6 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using ModFramework;
 using PeterHan.PLib.Options;
-using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
@@ -30,9 +29,10 @@ namespace Blueprints {
 
             offsetObject.transform.SetParent(visualizer.transform);
             offsetObject.transform.localPosition = new Vector3(0, Grid.HalfCellSizeInMeters);
+            var sprite = spriteRenderer.sprite;
             offsetObject.transform.localScale = new Vector3(
-                Grid.CellSizeInMeters / (spriteRenderer.sprite.texture.width / spriteRenderer.sprite.pixelsPerUnit),
-                Grid.CellSizeInMeters / (spriteRenderer.sprite.texture.height / spriteRenderer.sprite.pixelsPerUnit)
+                Grid.CellSizeInMeters / (sprite.texture.width / sprite.pixelsPerUnit),
+                Grid.CellSizeInMeters / (sprite.texture.height / sprite.pixelsPerUnit)
             );
 
             offsetObject.SetLayerRecursively(LayerMask.NameToLayer("Overlay"));
@@ -72,27 +72,27 @@ namespace Blueprints {
 
                 Blueprint blueprint = BlueprintsState.CreateBlueprint(new Vector2I(x0, y0), new Vector2I(x1, y1), MultiToolParameterMenu.Instance);
                 if (blueprint.IsEmpty()) {
-                    PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_EMPTY), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
+                    PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, BlueprintsStrings.STRING_BLUEPRINTS_CREATE_EMPTY, null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
                 }
 
                 else {
-                    void onConfirmDelegate(string blueprintName, FileNameDialog parent) {
+                    void OnConfirmDelegate(string blueprintName, FileNameDialog parent) {
                         blueprint.Rename(blueprintName, false);
                         blueprint.SetFolder("");
 
                         SpeedControlScreen.Instance.Unpause(false);
 
-                        PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_CREATED), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
+                        PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, BlueprintsStrings.STRING_BLUEPRINTS_CREATE_CREATED, null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
                         parent.Deactivate();
                     }
 
-                    FileNameDialog blueprintNameDialog = UIUtilities.CreateTextDialog(Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE), false, onConfirmDelegate);
+                    FileNameDialog blueprintNameDialog = UIUtilities.CreateTextDialog(BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE, false, OnConfirmDelegate);
                     SpeedControlScreen.Instance.Pause(false);
 
                     blueprintNameDialog.onCancel = delegate {
                         SpeedControlScreen.Instance.Unpause(false);
 
-                        PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, Strings.Get(BlueprintsStrings.STRING_BLUEPRINTS_CREATE_CANCELLED), null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
+                        PopFXManager.Instance.SpawnFX(BlueprintsAssets.BLUEPRINTS_CREATE_ICON_SPRITE, BlueprintsStrings.STRING_BLUEPRINTS_CREATE_CANCELLED, null, PlayerController.GetCursorPos(KInputManager.GetMousePos()), BlueprintsAssets.Options.FXTime);
                         blueprintNameDialog.Deactivate();
                     };
 

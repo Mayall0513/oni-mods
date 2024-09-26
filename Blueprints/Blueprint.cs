@@ -26,19 +26,15 @@ namespace Blueprints {
         public int BlueprintCount => contents.Count;
 
         //Backing variable for "SelectedBlueprintIndex" below.
-        private int selectedBlueprintIndex = 0;
+        private int selectedBlueprintIndex;
 
         /// <summary>
         /// The zero-based index of the selected blueprint in the backing list.
         /// </summary>
         public int SelectedBlueprintIndex {
-            get {
-                return selectedBlueprintIndex;
-            }
+            get => selectedBlueprintIndex;
 
-            set {
-                selectedBlueprintIndex = Mathf.Clamp(value, 0, contents.Count - 1);
-            }
+            set => selectedBlueprintIndex = Mathf.Clamp(value, 0, contents.Count - 1);
         }
 
         //Backing list storing the contents of the folder.
@@ -154,7 +150,7 @@ namespace Blueprints {
         /// The folder that contains the blueprint.
         /// Set to null to indicate no folder.
         /// </summary>
-        public string Folder { get; private set; } = null;
+        public string Folder { get; private set; }
 
         /// <summary>
         /// The buildings contained inside the blueprint.
@@ -284,7 +280,7 @@ namespace Blueprints {
         /// <summary>
         /// Reads the contents of a JSON-formatted file and adds it to the blueprint.
         /// </summary>
-        public void ReadJSON() {
+        public void ReadJson() {
             if (File.Exists(FilePath)) {
                 try {
                     using StreamReader reader = File.OpenText(FilePath);
@@ -306,7 +302,7 @@ namespace Blueprints {
                         if (buildingTokens != null) {
                             foreach (JToken buildingToken in buildingTokens) {
                                 BuildingConfig buildingConfig = new BuildingConfig();
-                                buildingConfig.ReadJSON((JObject)buildingToken);
+                                buildingConfig.ReadJson((JObject)buildingToken);
 
                                 BuildingConfiguration.Add(buildingConfig);
                             }
@@ -349,7 +345,7 @@ namespace Blueprints {
             string folder = Path.GetDirectoryName(FilePath);
 
             if (!Directory.Exists(folder)) {
-                Directory.CreateDirectory(folder);
+                Directory.CreateDirectory(folder!);
             }
 
             //Use the smaller, binary format if blueprint compression is enabled, use JSON otherwise.
@@ -358,7 +354,7 @@ namespace Blueprints {
             }
 
             else {
-                WriteJSON();
+                WriteJson();
             }
         }
 
@@ -380,7 +376,7 @@ namespace Blueprints {
         /// <summary>
         /// Writes the blueprint to a file using JSON formatting.
         /// </summary>
-        public void WriteJSON() {
+        public void WriteJson() {
             using TextWriter textWriter = File.CreateText(FilePath);
             using JsonTextWriter jsonWriter = new JsonTextWriter(textWriter) {
                 Formatting = Formatting.Indented
@@ -396,7 +392,7 @@ namespace Blueprints {
                 jsonWriter.WriteStartArray();
 
                 foreach (BuildingConfig buildingConfig in BuildingConfiguration) {
-                    buildingConfig.WriteJSON(jsonWriter);
+                    buildingConfig.WriteJson(jsonWriter);
                 }
 
                 jsonWriter.WriteEndArray();
@@ -559,7 +555,11 @@ namespace Blueprints {
         }
 
         public bool CanAffordToPlace(out Dictionary<Tag, float> remaining) {
-            Dictionary<Tag, float> accessibleResources = WorldInventory.Instance.GetAccessibleAmounts();
+            //Dictionary<Tag, float> accessibleResources = WorldInventory.Instance.GetAccessibleAmounts();
+
+            WorldInventory instance = ClusterManager.Instance.activeWorld.worldInventory;
+            Dictionary<Tag, float> accessibleResources = instance.GetAccessibleAmounts();
+
             remaining = BlueprintCost;
 
             foreach (KeyValuePair<Tag, float> accessibleResource in accessibleResources) {
@@ -607,7 +607,7 @@ namespace Blueprints {
         /// <summary>
         /// Multi use flags for describing more complex elements of the building, such as pipe connections.
         /// </summary>
-        public int Flags { get; set; } = 0;
+        public int Flags { get; set; }
 
         /// <summary>
         /// Appends the building config to the given binary writer.
@@ -634,7 +634,7 @@ namespace Blueprints {
         /// Doesn't write unnecessary information to save space.
         /// </summary>
         /// <param name="jsonWriter">The <see cref="JsonWriter"/> encsapsulating the stream to write to</param>
-        public void WriteJSON(JsonWriter jsonWriter) {
+        public void WriteJson(JsonWriter jsonWriter) {
             if (BuildingDef == null) {
                 Debug.Log("Error when writing building config: No building definition.");
                 return;
@@ -714,7 +714,7 @@ namespace Blueprints {
         /// Reads a JSON object to populate this building config.
         /// </summary>
         /// <param name="rootObject">The <see cref="JObject"/> to use to read from</param>
-        public void ReadJSON(JObject rootObject) {
+        public void ReadJson(JObject rootObject) {
             JToken offsetToken = rootObject.SelectToken("offset");
             JToken buildingDefToken = rootObject.SelectToken("buildingdef");
             JToken selectedElementsToken = rootObject.SelectToken("selected_elements");
@@ -763,7 +763,7 @@ namespace Blueprints {
         /// <param name="otherBuildingConfig">The other <see cref="BuildingConfig"/> to test for equality</param>
         /// <returns>True if the two objects are equal, false otherwise</returns>
         public bool Equals(BuildingConfig otherBuildingConfig) {
-            return Offset == otherBuildingConfig.Offset && BuildingDef == otherBuildingConfig.BuildingDef && Orientation == otherBuildingConfig.Orientation;
+            return otherBuildingConfig != null && Offset == otherBuildingConfig.Offset && BuildingDef == otherBuildingConfig.BuildingDef && Orientation == otherBuildingConfig.Orientation;
         }
     }
 }

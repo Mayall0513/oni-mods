@@ -18,9 +18,9 @@ namespace Blueprints {
         GameObject Visualizer { get; }
         Vector2I Offset { get; }
 
-        bool IsPlaceable(int cell);
-        void MoveVisualizer(int cell);
-        bool TryUse(int cell);
+        bool IsPlaceable(int cellParam);
+        void MoveVisualizer(int cellParam);
+        bool TryUse(int cellParam);
     }
 
     public interface ICleanableVisual : IVisual {
@@ -42,9 +42,9 @@ namespace Blueprints {
             this.buildingConfig = buildingConfig;
             this.cell = cell;
 
-            Vector3 positionCBC = Grid.CellToPosCBC(cell, Grid.SceneLayer.Building);
-            Visualizer = GameUtil.KInstantiate(buildingConfig.BuildingDef.BuildingPreview, positionCBC, Grid.SceneLayer.Ore, "BlueprintModBuildingVisualizer", LayerMask.NameToLayer("Place"));
-            Visualizer.transform.SetPosition(positionCBC);
+            Vector3 positionCbc = Grid.CellToPosCBC(cell, Grid.SceneLayer.Building);
+            Visualizer = GameUtil.KInstantiate(buildingConfig.BuildingDef.BuildingPreview, positionCbc, Grid.SceneLayer.Ore, "BlueprintModBuildingVisualizer", LayerMask.NameToLayer("Place"));
+            Visualizer.transform.SetPosition(positionCbc);
             Visualizer.SetActive(true);
 
             if (Visualizer.GetComponent<Rotatable>() != null) {
@@ -55,7 +55,7 @@ namespace Blueprints {
             if (batchedAnimController != null) {
                 batchedAnimController.visibilityType = KAnimControllerBase.VisibilityType.Always;
                 batchedAnimController.isMovable = true;
-                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset() + buildingConfig.BuildingDef.placementPivot;
+                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset();
                 batchedAnimController.TintColour = GetVisualizerColor(cell);
 
                 batchedAnimController.SetLayer(LayerMask.NameToLayer("Place"));
@@ -66,32 +66,32 @@ namespace Blueprints {
             }
         }
 
-        public bool IsPlaceable(int cell) {
-            return ValidCell(cell) && HasTech();
+        public bool IsPlaceable(int cellParam) {
+            return ValidCell(cellParam) && HasTech();
         }
 
-        public void MoveVisualizer(int cell) {
-            if (this.cell != cell) {
-                Visualizer.transform.SetPosition(Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer));
+        public void MoveVisualizer(int cellParam) {
+            if (cell != cellParam) {
+                Visualizer.transform.SetPosition(Grid.CellToPosCBC(cellParam, buildingConfig.BuildingDef.SceneLayer));
 
                 if (Visualizer.GetComponent<KBatchedAnimController>() != null) {
-                    Visualizer.GetComponent<KBatchedAnimController>().TintColour = GetVisualizerColor(cell);
+                    Visualizer.GetComponent<KBatchedAnimController>().TintColour = GetVisualizerColor(cellParam);
                 }
 
-                this.cell = cell;
+                cell = cellParam;
             }
         }
 
-        public bool TryUse(int cell) {
+        public bool TryUse(int cellParam) {
             if (BlueprintsState.InstantBuild) {
-                if (ValidCell(cell)) {
-                    Vector3 positionCBC = Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer);
-                    GameObject building = buildingConfig.BuildingDef.Create(positionCBC, null, buildingConfig.SelectedElements, buildingConfig.BuildingDef.CraftRecipe, 293.15F, buildingConfig.BuildingDef.BuildingComplete);
+                if (ValidCell(cellParam)) {
+                    Vector3 positionCbc = Grid.CellToPosCBC(cellParam, buildingConfig.BuildingDef.SceneLayer);
+                    GameObject building = buildingConfig.BuildingDef.Create(positionCbc, null, buildingConfig.SelectedElements, buildingConfig.BuildingDef.CraftRecipe, 293.15F, buildingConfig.BuildingDef.BuildingComplete);
                     if (building == null) {
                         return false;
                     }
 
-                    buildingConfig.BuildingDef.MarkArea(cell, buildingConfig.Orientation, buildingConfig.BuildingDef.ObjectLayer, building);
+                    buildingConfig.BuildingDef.MarkArea(cellParam, buildingConfig.Orientation, buildingConfig.BuildingDef.ObjectLayer, building);
 
                     if (building.GetComponent<Deconstructable>() != null) {
                         building.GetComponent<Deconstructable>().constructionElements = buildingConfig.SelectedElements.ToArray();
@@ -110,9 +110,9 @@ namespace Blueprints {
                 }
             }
 
-            else if (IsPlaceable(cell)) {
-                Vector3 positionCBC = Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer);
-                GameObject building = buildingConfig.BuildingDef.Instantiate(positionCBC, buildingConfig.Orientation, buildingConfig.SelectedElements);
+            else if (IsPlaceable(cellParam)) {
+                Vector3 positionCbc = Grid.CellToPosCBC(cellParam, buildingConfig.BuildingDef.SceneLayer);
+                GameObject building = buildingConfig.BuildingDef.Instantiate(positionCbc, buildingConfig.Orientation, buildingConfig.SelectedElements);
                 if (building == null) {
                     return false;
                 }
@@ -136,16 +136,16 @@ namespace Blueprints {
             return false;
         }
 
-        public bool ValidCell(int cell) {
-            return Grid.IsValidCell(cell) && Grid.IsVisible(cell) && buildingConfig.BuildingDef.IsValidPlaceLocation(Visualizer, cell, buildingConfig.Orientation, out string _);
+        public bool ValidCell(int cellParam) {
+            return Grid.IsValidCell(cellParam) && Grid.IsVisible(cellParam) && buildingConfig.BuildingDef.IsValidPlaceLocation(Visualizer, cellParam, buildingConfig.Orientation, out string _);
         }
 
         public bool HasTech() {
             return (BlueprintsState.InstantBuild || !BlueprintsAssets.Options.RequireConstructable || Db.Get().TechItems.IsTechItemComplete(buildingConfig.BuildingDef.PrefabID));
         }
 
-        public Color GetVisualizerColor(int cell) {
-            if (!ValidCell(cell)) {
+        public Color GetVisualizerColor(int cellParam) {
+            if (!ValidCell(cellParam)) {
                 return BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT;
             }
 
@@ -172,9 +172,9 @@ namespace Blueprints {
             this.buildingConfig = buildingConfig;
             hasReplacementLayer = buildingConfig.BuildingDef.ReplacementLayer != ObjectLayer.NumLayers;
 
-            Vector3 positionCBC = Grid.CellToPosCBC(cell, Grid.SceneLayer.Building);
-            Visualizer = GameUtil.KInstantiate(buildingConfig.BuildingDef.BuildingPreview, positionCBC, Grid.SceneLayer.Ore, "BlueprintModTileVisualizer", LayerMask.NameToLayer("Place"));
-            Visualizer.transform.SetPosition(positionCBC);
+            Vector3 positionCbc = Grid.CellToPosCBC(cell, Grid.SceneLayer.Building);
+            Visualizer = GameUtil.KInstantiate(buildingConfig.BuildingDef.BuildingPreview, positionCbc, Grid.SceneLayer.Ore, "BlueprintModTileVisualizer", LayerMask.NameToLayer("Place"));
+            Visualizer.transform.SetPosition(positionCbc);
             Visualizer.SetActive(true);
 
             if (Visualizer.GetComponent<Rotatable>() != null) {
@@ -185,7 +185,7 @@ namespace Blueprints {
             if (batchedAnimController != null) {
                 batchedAnimController.visibilityType = KAnimControllerBase.VisibilityType.Always;
                 batchedAnimController.isMovable = true;
-                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset() + buildingConfig.BuildingDef.placementPivot;
+                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset();
             }
 
             VisualsUtilities.SetVisualizerColor(cell, GetVisualizerColor(cell), Visualizer, buildingConfig);
@@ -193,29 +193,29 @@ namespace Blueprints {
             UpdateGrid(cell);
         }
 
-        public bool IsPlaceable(int cell) {
-            return ValidCell(cell) && HasTech();
+        public bool IsPlaceable(int cellParam) {
+            return ValidCell(cellParam) && HasTech();
         }
 
-        public void MoveVisualizer(int cell) {
-            Visualizer.transform.SetPosition(Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer));
-            VisualsUtilities.SetVisualizerColor(cell, GetVisualizerColor(cell), Visualizer, buildingConfig);
-            UpdateGrid(cell);
+        public void MoveVisualizer(int cellParam) {
+            Visualizer.transform.SetPosition(Grid.CellToPosCBC(cellParam, buildingConfig.BuildingDef.SceneLayer));
+            VisualsUtilities.SetVisualizerColor(cellParam, GetVisualizerColor(cellParam), Visualizer, buildingConfig);
+            UpdateGrid(cellParam);
         }
 
-        public bool TryUse(int cell) {
+        public bool TryUse(int cellParam) {
             Clean();
 
             if (BlueprintsState.InstantBuild) {
-                if (ValidCell(cell)) {
-                    Vector3 positionCBC = Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer);
-                    GameObject building = buildingConfig.BuildingDef.Create(positionCBC, null, buildingConfig.SelectedElements, buildingConfig.BuildingDef.CraftRecipe, 293.15F, buildingConfig.BuildingDef.BuildingComplete);
+                if (ValidCell(cellParam)) {
+                    Vector3 positionCbc = Grid.CellToPosCBC(cellParam, buildingConfig.BuildingDef.SceneLayer);
+                    GameObject building = buildingConfig.BuildingDef.Create(positionCbc, null, buildingConfig.SelectedElements, buildingConfig.BuildingDef.CraftRecipe, 293.15F, buildingConfig.BuildingDef.BuildingComplete);
                     if (building == null) {
                         return false;
                     }
 
-                    buildingConfig.BuildingDef.MarkArea(cell, buildingConfig.Orientation, buildingConfig.BuildingDef.TileLayer, building);
-                    buildingConfig.BuildingDef.RunOnArea(cell, buildingConfig.Orientation, cell0 => TileVisualizer.RefreshCell(cell0, buildingConfig.BuildingDef.TileLayer, buildingConfig.BuildingDef.ReplacementLayer));
+                    buildingConfig.BuildingDef.MarkArea(cellParam, buildingConfig.Orientation, buildingConfig.BuildingDef.TileLayer, building);
+                    buildingConfig.BuildingDef.RunOnArea(cellParam, buildingConfig.Orientation, cell0 => TileVisualizer.RefreshCell(cell0, buildingConfig.BuildingDef.TileLayer, buildingConfig.BuildingDef.ReplacementLayer));
 
                     if (building.GetComponent<Deconstructable>() != null) {
                         building.GetComponent<Deconstructable>().constructionElements = buildingConfig.SelectedElements.ToArray();
@@ -225,14 +225,14 @@ namespace Blueprints {
                         building.GetComponent<Rotatable>().SetOrientation(buildingConfig.Orientation);
                     }
 
-                    VisualsUtilities.SetVisualizerColor(cell, BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT, Visualizer, buildingConfig);
+                    VisualsUtilities.SetVisualizerColor(cellParam, BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT, Visualizer, buildingConfig);
                     return true;
                 }
             }
 
-            else if (IsPlaceable(cell)) {
-                Vector3 positionCBC = Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer);
-                GameObject building = buildingConfig.BuildingDef.Instantiate(positionCBC, buildingConfig.Orientation, buildingConfig.SelectedElements);
+            else if (IsPlaceable(cellParam)) {
+                Vector3 positionCbc = Grid.CellToPosCBC(cellParam, buildingConfig.BuildingDef.SceneLayer);
+                GameObject building = buildingConfig.BuildingDef.Instantiate(positionCbc, buildingConfig.Orientation, buildingConfig.SelectedElements);
                 if (building == null) {
                     return false;
                 }
@@ -245,7 +245,7 @@ namespace Blueprints {
                     Visualizer.GetComponent<KBatchedAnimController>().TintColour = BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT;
                 }
 
-                VisualsUtilities.SetVisualizerColor(cell, BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT, Visualizer, buildingConfig);
+                VisualsUtilities.SetVisualizerColor(cellParam, BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT, Visualizer, buildingConfig);
                 return true;
             }
 
@@ -254,14 +254,15 @@ namespace Blueprints {
 
         public void Clean() {
             if (DirtyCell != -1 && Grid.IsValidBuildingCell(DirtyCell)) {
+                //PUtil.LogDebug("1 " + DirtyCell);
                 if (Grid.Objects[DirtyCell, (int) buildingConfig.BuildingDef.TileLayer] == Visualizer) {
                     Grid.Objects[DirtyCell, (int) buildingConfig.BuildingDef.TileLayer] = null;
                 }
-
+                //PUtil.LogDebug("2 " + DirtyCell);
                 if (hasReplacementLayer && Grid.Objects[DirtyCell, (int) buildingConfig.BuildingDef.ReplacementLayer] == Visualizer) {
                     Grid.Objects[DirtyCell, (int) buildingConfig.BuildingDef.ReplacementLayer] = null;
                 }
-
+                //PUtil.LogDebug("3 " + DirtyCell);
                 if (buildingConfig.BuildingDef.isKAnimTile) {
                     GameObject tileLayerObject = Grid.Objects[DirtyCell, (int)buildingConfig.BuildingDef.TileLayer];
                     if (tileLayerObject == null || tileLayerObject.GetComponent<Constructable>() == null) {
@@ -273,7 +274,7 @@ namespace Blueprints {
                         World.Instance.blockTileRenderer.RemoveBlock(buildingConfig.BuildingDef, true, SimHashes.Void, DirtyCell);
                     }
                 }
-
+                //PUtil.LogDebug("4 " + DirtyCell);
                 TileVisualizer.RefreshCell(DirtyCell, buildingConfig.BuildingDef.TileLayer, buildingConfig.BuildingDef.ReplacementLayer);
             }
 
@@ -370,9 +371,9 @@ namespace Blueprints {
             this.buildingConfig = buildingConfig;
             this.cell = cell;
 
-            Vector3 positionCBC = Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer);
-            Visualizer = GameUtil.KInstantiate(buildingConfig.BuildingDef.BuildingPreview, positionCBC, Grid.SceneLayer.Ore, "BlueprintModUtilityVisualizer", LayerMask.NameToLayer("Place"));
-            Visualizer.transform.SetPosition(positionCBC);
+            Vector3 positionCbc = Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer);
+            Visualizer = GameUtil.KInstantiate(buildingConfig.BuildingDef.BuildingPreview, positionCbc, Grid.SceneLayer.Ore, "BlueprintModUtilityVisualizer", LayerMask.NameToLayer("Place"));
+            Visualizer.transform.SetPosition(positionCbc);
             Visualizer.SetActive(true);
 
             if (Visualizer.GetComponent<Rotatable>() != null) {
@@ -393,7 +394,7 @@ namespace Blueprints {
 
                 batchedAnimController.visibilityType = KAnimControllerBase.VisibilityType.Always;
                 batchedAnimController.isMovable = true;
-                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset() + buildingConfig.BuildingDef.placementPivot;
+                batchedAnimController.Offset = buildingConfig.BuildingDef.GetVisualizerOffset();
                 batchedAnimController.TintColour = GetVisualizerColor(cell);
 
                 batchedAnimController.SetLayer(LayerMask.NameToLayer("Place"));
@@ -406,30 +407,30 @@ namespace Blueprints {
             VisualsUtilities.SetVisualizerColor(cell, GetVisualizerColor(cell), Visualizer, buildingConfig);
         }
 
-        public bool IsPlaceable(int cell) {
-            return ValidCell(cell) && HasTech();
+        public bool IsPlaceable(int cellParam) {
+            return ValidCell(cellParam) && HasTech();
         }
 
-        public void MoveVisualizer(int cell) {
-            if (cell != this.cell) {
-                Visualizer.transform.SetPosition(Grid.CellToPosCBC(cell, Grid.SceneLayer.Building));
-                VisualsUtilities.SetVisualizerColor(cell, GetVisualizerColor(cell), Visualizer, buildingConfig);
+        public void MoveVisualizer(int cellParam) {
+            if (cellParam != cell) {
+                Visualizer.transform.SetPosition(Grid.CellToPosCBC(cellParam, Grid.SceneLayer.Building));
+                VisualsUtilities.SetVisualizerColor(cellParam, GetVisualizerColor(cellParam), Visualizer, buildingConfig);
 
-                this.cell = cell;
+                cell = cellParam;
             }
         }
 
-        public bool TryUse(int cell) {
+        public bool TryUse(int cellParam) {
             if (BlueprintsState.InstantBuild) {
-                if (ValidCell(cell)) {
-                    Vector3 positionCBC = Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer);
-                    GameObject building = buildingConfig.BuildingDef.Create(positionCBC, null, buildingConfig.SelectedElements, buildingConfig.BuildingDef.CraftRecipe, 293.15F, buildingConfig.BuildingDef.BuildingComplete);
+                if (ValidCell(cellParam)) {
+                    Vector3 positionCbc = Grid.CellToPosCBC(cellParam, buildingConfig.BuildingDef.SceneLayer);
+                    GameObject building = buildingConfig.BuildingDef.Create(positionCbc, null, buildingConfig.SelectedElements, buildingConfig.BuildingDef.CraftRecipe, 293.15F, buildingConfig.BuildingDef.BuildingComplete);
                     if (building == null) {
                         return false;
                     }
 
-                    buildingConfig.BuildingDef.MarkArea(cell, buildingConfig.Orientation, buildingConfig.BuildingDef.TileLayer, building);
-                    buildingConfig.BuildingDef.RunOnArea(cell, buildingConfig.Orientation, cell0 => TileVisualizer.RefreshCell(cell0, buildingConfig.BuildingDef.TileLayer, buildingConfig.BuildingDef.ReplacementLayer));
+                    buildingConfig.BuildingDef.MarkArea(cellParam, buildingConfig.Orientation, buildingConfig.BuildingDef.TileLayer, building);
+                    buildingConfig.BuildingDef.RunOnArea(cellParam, buildingConfig.Orientation, cell0 => TileVisualizer.RefreshCell(cell0, buildingConfig.BuildingDef.TileLayer, buildingConfig.BuildingDef.ReplacementLayer));
 
                     if (building.GetComponent<Rotatable>() != null) {
                         building.GetComponent<Rotatable>().SetOrientation(buildingConfig.Orientation);
@@ -439,14 +440,14 @@ namespace Blueprints {
                         building.GetComponent<KAnimGraphTileVisualizer>().UpdateConnections((UtilityConnections) buildingConfig.Flags);
                     }
 
-                    VisualsUtilities.SetVisualizerColor(cell, BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT, Visualizer, buildingConfig);
+                    VisualsUtilities.SetVisualizerColor(cellParam, BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT, Visualizer, buildingConfig);
                     return true;
                 }
             }
 
-            else if (IsPlaceable(cell)) {
-                Vector3 positionCBC = Grid.CellToPosCBC(cell, buildingConfig.BuildingDef.SceneLayer);
-                GameObject building = buildingConfig.BuildingDef.Instantiate(positionCBC, buildingConfig.Orientation, buildingConfig.SelectedElements);
+            else if (IsPlaceable(cellParam)) {
+                Vector3 positionCbc = Grid.CellToPosCBC(cellParam, buildingConfig.BuildingDef.SceneLayer);
+                GameObject building = buildingConfig.BuildingDef.Instantiate(positionCbc, buildingConfig.Orientation, buildingConfig.SelectedElements);
 
                 if (building == null) {
                     return false;
@@ -464,27 +465,27 @@ namespace Blueprints {
                     building.FindOrAddComponent<Prioritizable>().SetMasterPriority(ToolMenu.Instance.PriorityScreen.GetLastSelectedPriority());
                 }
 
-                VisualsUtilities.SetVisualizerColor(cell, BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT, Visualizer, buildingConfig);
+                VisualsUtilities.SetVisualizerColor(cellParam, BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT, Visualizer, buildingConfig);
                 return true;
             }
 
             return false;
         }
 
-        public bool ValidCell(int cell) {
-            return Grid.IsValidCell(cell) && Grid.IsVisible(cell) && !HasUtility(cell) && buildingConfig.BuildingDef.IsValidPlaceLocation(Visualizer, cell, buildingConfig.Orientation, out string _);
+        public bool ValidCell(int cellParam) {
+            return Grid.IsValidCell(cellParam) && Grid.IsVisible(cellParam) && !HasUtility(cellParam) && buildingConfig.BuildingDef.IsValidPlaceLocation(Visualizer, cellParam, buildingConfig.Orientation, out string _);
         }
 
         public bool HasTech() {
             return (BlueprintsState.InstantBuild || !BlueprintsAssets.Options.RequireConstructable || Db.Get().TechItems.IsTechItemComplete(buildingConfig.BuildingDef.PrefabID));
         }
 
-        public bool HasUtility(int cell) {
-            return Grid.Objects[cell, (int) buildingConfig.BuildingDef.TileLayer] != null;
+        public bool HasUtility(int cellParam) {
+            return Grid.Objects[cellParam, (int) buildingConfig.BuildingDef.TileLayer] != null;
         }
 
-        public Color GetVisualizerColor(int cell) {
-            if (!ValidCell(cell)) {
+        public Color GetVisualizerColor(int cellParam) {
+            if (!ValidCell(cellParam)) {
                 return BlueprintsAssets.BLUEPRINTS_COLOR_INVALIDPLACEMENT;
             }
 
@@ -508,28 +509,28 @@ namespace Blueprints {
             Offset = offset;
         }
 
-        public bool IsPlaceable(int cell) {
-            return Grid.IsValidCell(cell) && Grid.IsVisible(cell) && Grid.Solid[cell] && !Grid.Foundation[cell] && Grid.Objects[cell, 7] == null;
+        public bool IsPlaceable(int cellParam) {
+            return Grid.IsValidCell(cellParam) && Grid.IsVisible(cellParam) && Grid.Solid[cellParam] && !Grid.Foundation[cellParam] && Grid.Objects[cellParam, 7] == null;
         }
 
-        public void MoveVisualizer(int cell) {
-            Visualizer.transform.SetPosition(Grid.CellToPosCBC(cell, DigTool.Instance.visualizerLayer));
-            Visualizer.SetActive(IsPlaceable(cell));
+        public void MoveVisualizer(int cellParam) {
+            Visualizer.transform.SetPosition(Grid.CellToPosCBC(cellParam, DigTool.Instance.visualizerLayer));
+            Visualizer.SetActive(IsPlaceable(cellParam));
         }
 
-        public bool TryUse(int cell) {
-            if (IsPlaceable(cell)) {
+        public bool TryUse(int cellParam) {
+            if (IsPlaceable(cellParam)) {
                 if (BlueprintsState.InstantBuild) {
-                    WorldDamage.Instance.DestroyCell(cell);
+                    WorldDamage.Instance.DestroyCell(cellParam);
                 }
 
                 else {
                     GameObject digVisualizer = Util.KInstantiate(Assets.GetPrefab(new Tag("DigPlacer")));
-                    digVisualizer.transform.SetPosition(Grid.CellToPosCBC(cell, DigTool.Instance.visualizerLayer) - new Vector3(0F, 0F, 0.15F));
+                    digVisualizer.transform.SetPosition(Grid.CellToPosCBC(cellParam, DigTool.Instance.visualizerLayer) - new Vector3(0F, 0F, 0.15F));
                     digVisualizer.GetComponent<Prioritizable>().SetMasterPriority(ToolMenu.Instance.PriorityScreen.GetLastSelectedPriority());
                     digVisualizer.SetActive(true);
 
-                    Grid.Objects[cell, 7] = digVisualizer;
+                    Grid.Objects[cellParam, 7] = digVisualizer;
                     Visualizer.SetActive(false);
                 }
 

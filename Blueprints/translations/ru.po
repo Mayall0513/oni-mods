@@ -1,0 +1,182 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included: Blueprints\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2021-05-12 13:55+0900\n"
+"PO-Revision-Date: 2021-05-12 15:14+0900\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.3\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Last-Translator: \n"
+"Language: ru\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: Blueprints\n"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_NAME"
+msgid "New Blueprint"
+msgstr "Новый чертеж"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_TOOLTIP"
+msgid "Create blueprint {0}"
+msgstr "Создать чертеж {0}"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_EMPTY"
+msgid "Blueprint would have been empty!"
+msgstr "Чертеж пуст!"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_CREATED"
+msgid "Created blueprint!"
+msgstr "Чертеж создан!"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_CANCELLED"
+msgid "Cancelled blueprint!"
+msgstr "Чертеж отменен!"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_TOOLTIP_TITLE"
+msgid "CREATE BLUEPRINT TOOL"
+msgstr "НОВЫЙ ЧЕРТЕЖ"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_ACTION_DRAG"
+msgid "DRAG"
+msgstr "ВЫДЕЛИТЬ"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_CREATE_ACTION_BACK"
+msgid "BACK"
+msgstr "НАЗАД"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_NAME"
+msgid "Use Blueprint"
+msgstr "Применить чертеж"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP"
+msgid "Use blueprint {0}"
+msgstr "Применить чертеж {0}"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS"
+msgid "Loaded {0} blueprints! ({1} total)"
+msgstr "Загружено {0} чертежей! ({1} всего)"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS_ADDITIONAL"
+msgid "additional"
+msgstr "добавление"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_LOADEDBLUEPRINTS_FEWER"
+msgid "fewer"
+msgstr "уменьшение"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_TOOLTIP_TITLE"
+msgid "USE BLUEPRINT TOOL"
+msgstr "ПРИМЕНИТЬ ЧЕРТЕЖ"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_ACTION_CLICK"
+msgid "CLICK"
+msgstr "РАЗМЕСТИТЬ"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_ACTION_BACK"
+msgid "BACK"
+msgstr "НАЗАД"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_CYCLEFOLDERS"
+msgid "Use {0} and {1} to cycle folders."
+msgstr "Используйте {0} и {1} для выбора папки."
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_CYCLEBLUEPRINTS"
+msgid "Use {0} and {1} to cycle blueprints."
+msgstr "Используйте {0} и {1} для выбора чертежа."
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT"
+msgid "Press {0} to assign folder."
+msgstr "Нажмите {0} для создания папки под чертежи."
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDERBLUEPRINT_NA"
+msgid "Same folder provided - no change made."
+msgstr "Папка та же самая - изменения не внесены."
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_MOVEDBLUEPRINT"
+msgid "Moved \"{0}\" to \"{1}\""
+msgstr "\"{0}\" перемещен в \"{1}\""
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_NAMEBLUEPRINT"
+msgid "Press {0} to rename blueprint."
+msgstr "Нажмите {0} чтобы переименовать чертеж."
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_DELETEBLUEPRINT"
+msgid "Press {0} to delete blueprint."
+msgstr "Нажмите {0} чтобы удалить чертеж."
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_ERRORMESSAGE"
+msgid "This blueprint contained {0} misconfigured or missing prefabs which have been omitted!"
+msgstr "Этот чертеж содержит {0} некорретных или отсутствующих элементов, которые были игнорированы!"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_SELECTEDBLUEPRINT"
+msgid "Selected \"{0}\" ({1}/{2}) from \"{3}\" ({4}/{5})"
+msgstr "Выбран \"{0}\" ({1}/{2}) из \"{3}\" ({4}/{5})"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_FOLDEREMPTY"
+msgid "Selected folder \"{0}\" is empty!"
+msgstr "Выбранная папка \"{0}\" пуста!"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_USE_NOBLUEPRINTS"
+msgid "No blueprints loaded!"
+msgstr "Ни один чертеж не загружен!"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_NAME"
+msgid "Take Snapshot"
+msgstr "Сделайте снимок"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP"
+msgid "Take snapshot {0} \n\nCreate a blueprint and quickly place it elsewhere while not cluttering your blueprint collection! \nSnapshots do not persist between games or worlds."
+msgstr "Сделайте снимок {0} \n\nСоздайте чертеж и сразу же разместите его, не помещая в коллекцию чертежей! \nСнимок нигде не сохраняется."
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_EMPTY"
+msgid "Snapshot would have been empty!"
+msgstr "Снимок пуст!"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TAKEN"
+msgid "Snapshot taken!"
+msgstr "Снимок сделан!"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_TOOLTIP_TITLE"
+msgid "SNAPSHOT TOOL"
+msgstr "СНИМОК"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_ACTION_CLICK"
+msgid "CLICK"
+msgstr "РАЗМЕСТИТЬ"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_ACTION_DRAG"
+msgid "DRAG"
+msgstr "ВЫДЕЛИТЬ"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_ACTION_BACK"
+msgid "BACK"
+msgstr "НАЗАД"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_SNAPSHOT_NEWSNAPSHOT"
+msgid "Press {0} to take new snapshot."
+msgstr "Нажмите {0}, чтобы сделать новый снимок."
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_NAMEBLUEPRINT_TITLE"
+msgid "NAME BLUEPRINT"
+msgstr "НАЗОВИТЕ ЧЕРТЕЖ"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_FOLDERBLUEPRINT_TITLE"
+msgid "ASSIGN FOLDER"
+msgstr "СОЗДАЙТЕ ПАПКУ"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_GASTILES"
+msgid "Gas Tiles"
+msgstr "Клетки с газом"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_ALL"
+msgid "All"
+msgstr "All"
+
+msgctxt "Blueprints.BlueprintsStrings.STRING_BLUEPRINTS_MULTIFILTER_NONE"
+msgid "None"
+msgstr "None"

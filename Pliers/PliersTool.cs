@@ -1,11 +1,11 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
 namespace Pliers {
     public sealed class PliersTool : FilteredDragTool {
-        private static readonly UtilityConnections[] connections = {
+        private static readonly UtilityConnections[] Connections = {
             UtilityConnections.Left,
             UtilityConnections.Right,
             UtilityConnections.Up,
@@ -35,9 +35,10 @@ namespace Pliers {
 
             offsetObject.transform.SetParent(visualizer.transform);
             offsetObject.transform.localPosition = new Vector3(0, Grid.HalfCellSizeInMeters);
+            var sprite = spriteRenderer.sprite;
             offsetObject.transform.localScale = new Vector3(
-                Grid.CellSizeInMeters / (spriteRenderer.sprite.texture.width / spriteRenderer.sprite.pixelsPerUnit),
-                Grid.CellSizeInMeters / (spriteRenderer.sprite.texture.height / spriteRenderer.sprite.pixelsPerUnit)
+                Grid.CellSizeInMeters / (sprite.texture.width / sprite.pixelsPerUnit),
+                Grid.CellSizeInMeters / (sprite.texture.height / sprite.pixelsPerUnit)
             );
 
             offsetObject.SetLayerRecursively(LayerMask.NameToLayer("Overlay"));
@@ -90,17 +91,17 @@ namespace Pliers {
 
                         if (Grid.IsVisible(cell)) {
                             for (int layer = 0; layer < Grid.ObjectLayers.Length; ++layer) {
-                                GameObject gameObject = Grid.Objects[cell, layer];
+                                GameObject localGameObject = Grid.Objects[cell, layer];
                                 Building building;
 
-                                if (gameObject != null && (building = gameObject.GetComponent<Building>()) != null && IsActiveLayer(GetFilterLayerFromGameObject(gameObject))) {
+                                if (localGameObject != null && (building = localGameObject.GetComponent<Building>()) != null && IsActiveLayer(GetFilterLayerFromGameObject(localGameObject))) {
                                     IHaveUtilityNetworkMgr utilityNetworkManager;
 
                                     if ((utilityNetworkManager = building.Def.BuildingComplete.GetComponent<IHaveUtilityNetworkMgr>()) != null) {
                                         UtilityConnections connectionsToRemove = 0;
                                         UtilityConnections buildingConnections = utilityNetworkManager.GetNetworkManager().GetConnections(cell, false);
 
-                                        foreach (UtilityConnections utilityConnection in connections) {
+                                        foreach (UtilityConnections utilityConnection in Connections) {
                                             if ((buildingConnections & utilityConnection) != utilityConnection) {
                                                 continue;
                                             }
@@ -113,7 +114,7 @@ namespace Pliers {
                                                     GameObject otherGameObject = Grid.Objects[offsetCell, layer];
                                                     Building otherBuilding;
 
-                                                    if (otherGameObject != null && (otherBuilding = otherGameObject.GetComponent<Building>()) != null && otherBuilding.Def.BuildingComplete.GetComponent<IHaveUtilityNetworkMgr>() != null && IsActiveLayer(GetFilterLayerFromGameObject(gameObject))) {
+                                                    if (otherGameObject != null && (otherBuilding = otherGameObject.GetComponent<Building>()) != null && otherBuilding.Def.BuildingComplete.GetComponent<IHaveUtilityNetworkMgr>() != null && IsActiveLayer(GetFilterLayerFromGameObject(localGameObject))) {
                                                         connectionsToRemove |= utilityConnection;
                                                     }
                                                 }
